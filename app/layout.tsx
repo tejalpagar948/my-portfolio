@@ -26,8 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`text-custom-white`}
+      <body className={`text-custom-white`}
       >
       <SiteHeader/>
       <main className="bg-custom-blue">{children}</main>

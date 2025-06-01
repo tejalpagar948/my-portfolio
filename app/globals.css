@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -10,17 +13,11 @@
   --color-custom-black: #000;
   --color-custom-navy-blue: #101624;
   --color-custom-blue: #0a101e;
+  --color-custom-grayish-blue: #232935;
   --color-custom-yellow: #fec544;
   --color-custom-dark-gray: #3f4551;
   --color-custom-midium-gray: #808080;
   --color-custom-light-gray: #a9adb8;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -92,4 +89,24 @@ h6 {
 
 .info-list-item .info-span-right::before {
   @apply content-[':'];
+}
+
+.skill-name-percentage::before {
+  @apply absolute bg-custom-yellow w-16 h-[2.5px] bottom-[-10px] z-50 content-[''];
+}
+.skill-name-percentage::after {
+  @apply bg-custom-dark-gray absolute w-full h-[2.5px] bottom-[-10px] content-[''];
+}
+
+.resume-content-list-item::before {
+  @apply content-[''] absolute w-[12px] h-[12px] rounded-full top-[-5px] left-0 bg-[#101624] border-2 border-custom-dark-gray -translate-x-1/2 -translate-y-1/2;
+}
+
+.resume-content-list-item:last-child {
+  @apply pt-[1px] px-11 pb-0;
+}
+
+.review-para::after {
+  transform: translateX(-50%) rotate(45deg);
+  @apply content[''] w-7 h-7 border-r border-r-custom-grayish-blue border-b border-b-custom-grayish-blue bg-custom-navy-blue absolute left-1/2 bottom-[-16px] z-30;
 }
