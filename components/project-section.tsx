@@ -22,7 +22,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
     },
     {
       title: "Proguardpalns",
-      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, excepturi.",
+      description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident,  excepturi excepturi.",
       linkText: "Read More",
       linkHref: "",
     }
