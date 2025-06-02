@@ -100,7 +100,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       <div className="contact-info w-1/2 flex flex-col gap-4">
         <h4>Contact Info</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, laudantium.</p>
-        <ul className="info-list">
+        <ul className="info-list flex flex-col gap-5">
         {infoList.map((item,index)=>(
           <li key={index} className="info-list-item flex gap-5">
             <Image
@@ -111,15 +111,15 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             className="rounded-full w-11 h-11 border border-custom-grayish-blue py-2 px-3"/>
             <div className="info-content flex flex-col">
               <h6 className="mb-1">{item.heading}</h6>
-              <span className="info leading-6">{item.info[0]}</span>
-              <span className="info leading-6">{item.info[1]}</span>
+              <span className="info leading-6 text-custom-light-gray">{item.info[0]}</span>
+              <span className="info leading-6 text-custom-light-gray">{item.info[1]}</span>
             </div>
           </li>
          ))}  
         </ul>
         <div className="social-media pt-6 px-0 pb-5">
         <span className="optional-para text-xl text-custom-light-gray">Visite my social profile and get connected</span>
-        <SocialMediaIcons/>
+        <SocialMediaIcons className={`pt-6 px-0 pb-5`} childClassName={`w-[10%]`}/>
       </div>
       </div>
     </div>

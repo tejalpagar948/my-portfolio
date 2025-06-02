@@ -34,7 +34,7 @@ const Banner : React.FC<BannerProps>=({
                   className="person-img object-cover h-[659px] w-full"
                 />
               </figure>
-              <SocialMediaIcons/>
+              <SocialMediaIcons className={'absolute bottom-[4.2%] translate-x-[-360px] bg-custom-navy-blue rounded-bl-[50px] rounded-tl-[50px] p-4 border border-custom-dark-gray border-r-0 -z-10'} childClassName={`w-[12%]`}/>
             </div>
           </div>
         </section>

@@ -31,10 +31,10 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
       <h3 className="">Reviews</h3>
       <ul className="review-list flex gap-7">
       {reviewsData.map((item,index)=>(
-        <li key={index} className="review-list-item w-1/3 flex flex-col align-center gap-7">
+        <li key={index} className="review-list-item w-1/3 flex flex-col align-center">
           <p className="review-para text-center bg-custom-navy-blue border border-custom-grayish-blue py-5 px-2  relative
         ">{item.text}</p>
-          <div className="person-info w-2/6 m-auto mt-10 flex flex-col items-center gap-2">
+          <div className="person-info w-2/6 m-auto mt-10 flex flex-col items-center gap-1">
           <figure className= "rounded-full mb-3.5">
             <Image src={PersonImage} alt="Person" className="rounded-full" />
           </figure>

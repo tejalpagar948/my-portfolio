@@ -22,10 +22,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
             <p>I'm a software developer with a passion for creating innovative solutions. I have experience in various programming languages and frameworks, and I'm always eager to learn new technologies.</p>
             <p>I'm a software developer with a passion for creating innovative solutions. I have experience in various programming languages and frameworks, and I'm always eager to learn new technologies.</p>
           </div>
-          <ul className="skills-list w-1/2 flex flex-col gap-10 ">
+          <ul className="skills-list w-1/2 flex flex-col gap-10">
             {skills.map((item,index)=>(
                 <li key={index} className="skills-list-item flex">
-                <div className="skill-name-percentage flex justify-between relative">
+                <div className="skill-name-percentage flex justify-between relative w-full">
                   <span className="skill-name">{item.name}</span> 
                   <span className="skill-percentage">{item.percentage}</span> 
                 </div>

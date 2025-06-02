@@ -42,7 +42,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
             height="20"
             className="w-full"
             />
-            <h6 className="pt-2 text-2xl">{item.title}</h6>
+            <span className="pt-2 text-2xl">{item.title}</span>
             <p className="text-base">{item.description}</p>
             <a href={item.linkHref}target='_self' className="underline text-custom-yellow" >{item.linkText}</a>
           </li>

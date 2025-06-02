@@ -114,5 +114,5 @@ h6 {
 .review-para::after {
   content: '';
   transform: translateX(-50%) rotate(45deg);
-  @apply w-7 h-7 border-r border-r-custom-grayish-blue border-b border-b-custom-grayish-blue bg-custom-navy-blue absolute left-1/2 -bottom-4 z-30;
+  @apply w-7 h-7 border-r border-r-custom-grayish-blue border-b border-b-custom-grayish-blue bg-custom-navy-blue absolute left-1/2 -bottom-3.5 z-30;
 }
