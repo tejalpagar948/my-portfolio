@@ -37,7 +37,8 @@ const SocialMediaIcons : React.FC<SocialMediaIconsProps>=({
     <>
     <ul className={`social-media-icons w-auto flex gap-4.5 ${className}`}>
     {socialLinks.map((item ,index) => (
-         <li  key={index} className={`social-media-icons-items overflow-hidden flex rounded-[42px] borde-custom-white bg-[#070d1b] px-4 py-3 gap-4 border border-[0.5px] border-custom-dark-gray ${childClassName}`}>
+         <li  key={index} className={`social-media-icons-items overflow-hidden flex rounded-[42px] borde-custom-white bg-[#070d1b] px-4 py-3 gap-4 border border-[0.5px] border-custom-dark-gray ${childClassName} hover:w-auto transition-all duration-[1500ms] ease-in-out
+         `}>
          <Image
            src={item.icon}
            alt=""

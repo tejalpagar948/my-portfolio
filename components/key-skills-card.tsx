@@ -36,7 +36,7 @@ const KeySkillsCard: React.FC<KeySkillsCardProps> = ({
   return (
     <ul className="key-skill-list flex gap-7 flex-wrap">
     {keySkills.map((item,index)=>(
-       <li key={index} className="key-skill-item w-[calc((100%-3.5rem)/3)] flex flex-col items-center text-center gap-4.5 py-11 px-7 bg-custom-navy-blue border-1 border-solid  border-custom-grayish-blue">
+       <li key={index} className="key-skill-item w-full md:w-[calc((100%-3.5rem)/3)] flex flex-col items-center text-center gap-4.5 py-11 px-7 bg-custom-navy-blue border-1 border-solid  border-custom-grayish-blue">
        <Image
        src={item.icon}
        alt=""

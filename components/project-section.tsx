@@ -32,7 +32,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
     <section className="projects pb-24">
     <div className="wrapper">
       <h3 className="all-caps">projects</h3>
-        <ul className="project-list flex gap-8">
+        <ul className="project-list flex flex-wrap gap-8">
         { projects.map((item,index)=>(
           <li key={index} className="project-list-item flex-1/3 flex flex-col gap-3.5">
             <Image
