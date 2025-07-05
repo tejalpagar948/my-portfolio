@@ -28,7 +28,7 @@ const ResumeContentList: React.FC<ResumeContentListProps> = () => {
   ];
 
   return (
-    <div className="resume-left w-1/2 flex flex-col gap-10">
+    <div className="resume-left w-full md:w-1/2 flex flex-col gap-10">
       {resumeData.map((item, index) => (
         <React.Fragment key={index}>
           <div className="resume-caption flex gap-7">

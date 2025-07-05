@@ -67,8 +67,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     <section className="contact-me">
     <div className="wrapper pb-24">
       <h3 className="">Contact me</h3>
-      <div className="contact-me-content flex gap-7">
-      <div className="contact-form w-1/2">
+      <div className="contact-me-content flex flex-col md:flex-row gap-7">
+      <div className="contact-form w-full md:w-1/2">
         <h4>Just say Hello</h4>
         <form action="#FIXME" className="flex flex-col gap-7 mt-5">
         {formFields.map((field) => (
@@ -97,7 +97,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           <Button/>
         </form>
       </div>
-      <div className="contact-info w-1/2 flex flex-col gap-4">
+      <div className="contact-info w-full md:w-1/2 flex flex-col gap-4">
         <h4>Contact Info</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, laudantium.</p>
         <ul className="info-list flex flex-col gap-5">

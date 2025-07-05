@@ -10,7 +10,7 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
     <section className="resume pb-24">
       <div className="wrapper">
         <h3 className="">Resume</h3>
-        <div className="resume-content flex gap-6">
+        <div className="resume-content flex flex-col md:flex-row gap-6">
         <ResumeContentList/>
         <ResumeContentList/>
       </div>
