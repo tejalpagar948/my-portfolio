@@ -1,4 +1,5 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useRef,useState } from 'react';
 import Button from "@/components/button";
 import SocialMediaIcons from "@/components/social-media-icons";
 
@@ -6,10 +7,33 @@ interface BannerProps{
 }
 const Banner : React.FC<BannerProps>=({
 })=>{
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection("down");
+        console.log("Scrolling down ⬇️");
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection("up");
+        console.log("Scrolling up ⬆️");
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+  
   return(
     <>
         <section className="banner relative">
-          <div className="w-full mx-auto">
+          <div className={`w-full mx-auto`}>
             <figure
               className=""
             >
@@ -31,7 +55,9 @@ const Banner : React.FC<BannerProps>=({
                 <img
                   src="./assets/images/person-img.jpg"
                   alt="Tejal Pagar"
-                  className="person-img object-cover h-[659px] w-full"
+                  className={`object-cover h-[659px] w-full transition-transform duration-500 ease-in-out ${
+                    scrollDirection === "down" ? "translate-x-[100px]" : "translate-x-0"
+                  }`}
                 />
               </figure>
               <SocialMediaIcons className={'absolute bottom-[4.2%] translate-x-[-360px] bg-custom-navy-blue rounded-bl-[50px] rounded-tl-[50px] p-4 border border-custom-dark-gray border-r-0 -z-10'} childClassName={`w-[12%]`}/>
