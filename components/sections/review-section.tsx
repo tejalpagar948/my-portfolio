@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import PersonImage from '../public/assets/images/person-img.jpg';
+import PersonImage from '../../public/assets/images/person-img.jpg';
 
 interface ReviewSectionProps {
 }
@@ -29,7 +29,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({
     <section className="reviews pb-24">
     <div className="wrapper">
       <h3 className="">Reviews</h3>
-      <ul className="review-list flex flex-wrap gap-7">
+      <ul className="review-list flex flex-wrap md:flex-nowrap gap-7">
       {reviewsData.map((item,index)=>(
         <li key={index} className="review-list-item w-full md:w-1/3 flex flex-col align-center">
           <p className="review-para text-center bg-custom-navy-blue border border-custom-grayish-blue py-5 px-2  relative

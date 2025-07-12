@@ -1,6 +1,6 @@
 import React from 'react';
-import SocialMediaIcons from './social-media-icons';
-import Button from './button';
+import SocialMediaIcons from '../social-media-icons';
+import Button from '../button';
 import Image from 'next/image';
 
 interface ContactSectionProps {
@@ -64,10 +64,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({
   
   
   return (
-    <section className="contact-me">
+    <section className="contact-me" id='contact'>
     <div className="wrapper pb-24">
       <h3 className="">Contact me</h3>
-      <div className="contact-me-content flex flex-col md:flex-row gap-7">
+      <div className="contact-me-content flex flex-col md:flex-row gap-13">
       <div className="contact-form w-full md:w-1/2">
         <h4>Just say Hello</h4>
         <form action="#FIXME" className="flex flex-col gap-7 mt-5">

@@ -15,22 +15,22 @@ const SiteNav: React.FC<SiteNavProps> = () => {
     },
     {
       label: "About",
-      href: "#FIXME",
+      href: "#about",
       title: "About",
     },
     {
       label: "Resume",
-      href: "#FIXME",
+      href: "#resume",
       title: "Resume",
     },
     {
-      label: "Portfolio",
-      href: "#FIXME",
-      title: "Portfolio",
+      label: "Project",
+      href: "#project",
+      title: "Project",
     },
     {
       label: "Contact",
-      href: "#FIXME",
+      href: "#contact", 
       title: "Contact",
     },
     {
