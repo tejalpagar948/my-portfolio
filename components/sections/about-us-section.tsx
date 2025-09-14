@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from './button';
-import PersonImg from '../public/assets/images/about-page-person-img.jpg';
+import Button from '../button';
+import PersonImg from '../../public/assets/images/about-page-person-img.jpg';
 
 interface AboutUsProps {}
 
@@ -12,7 +12,7 @@ const AboutUs: React.FC<AboutUsProps> = () => {
     { label: 'Email', value: 'sample@gmail.com' }
   ];
   return (
-    <section className="about">
+    <section className="about" id="about">
     <div className="wrapper">
       <h3 className="all-caps">about me</h3>
       <div className="about-content gap-13 flex flex-col md:flex-row">
