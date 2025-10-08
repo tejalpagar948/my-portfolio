@@ -7,7 +7,6 @@ import Image from 'next/image';
 interface ContactSectionProps {}
 
 const ContactSection: React.FC<ContactSectionProps> = () => {
-  // ✅ formData is now properly typed
   const [formData, setFormData] = useState<Record<string, string>>({});
 
   const formFields = [
@@ -139,12 +138,11 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
                   <span className={field.spanClass}></span>
                 </div>
               ))}
-                <button
-        type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 px-6 transition"
-      >
-        Submit
-      </button>
+            <button
+                type="submit"
+                className="capitalize bg-custom-yellow text-custom-black py-3 px-12 rounded-4xl"
+              >Submit
+            </button>
             </form>
           </div>
 
