@@ -10,25 +10,25 @@ const Banner : React.FC<BannerProps>=({
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection("down");
-        console.log("Scrolling down ⬇️");
-      } else if (currentScrollY < lastScrollY) {
-        setScrollDirection("up");
-        console.log("Scrolling up ⬆️");
-      }
+  //     if (currentScrollY > lastScrollY) {
+  //       setScrollDirection("down");
+  //       console.log("Scrolling down ⬇️");
+  //     } else if (currentScrollY < lastScrollY) {
+  //       setScrollDirection("up");
+  //       console.log("Scrolling up ⬆️");
+  //     }
 
-      setLastScrollY(currentScrollY);
-    };
+  //     setLastScrollY(currentScrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY]);
   
   return(
     <>
