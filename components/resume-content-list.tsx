@@ -48,7 +48,7 @@ const ResumeContentList: React.FC<ResumeContentListProps> = () => {
                 className="resume-content-list-item pt-[1px] px-10 pb-12 flex flex-col gap-3 border-l-[1.5px] border-custom-grayish-blue relative pr-0 md:pr-10"
               >
                 <h5 className="text-xl mt-[-20px]">{inneritem.title}</h5>
-                <span className="period text-[#a9adb8] text-base">
+                <span className="period text-custom-light-gray text-base">
                   {inneritem.period}
                 </span>
                 <span className="organisation text-xl py-2.5 px-0">

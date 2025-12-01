@@ -3,22 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "set NEXT_TURBOPACK=0 && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:schema": "sanity schema extract",
+    "sanity:typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/client": "^7.13.0",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/structure": "^2.36.2",
+    "@sanity/vision": "^4.15.0",
     "autoprefixer": "^10.4.21",
-    "next": "15.3.2",
+    "babel-plugin-styled-components": "^2.1.4",
+    "next": "^16.0.1",
+    "next-sanity": "^11.6.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-slick": "^0.30.3",
+    "sanity": "^4.15.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
+    "@sanity/codegen": "^4.18.0",
+    "@sanity/tsdoc": "^4.0.0",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "20.17.57",
     "@types/react": "19.1.6",
     "@types/react-dom": "^19",
+    "@types/react-slick": "^0.23.13",
+    "sanity-codegen": "^0.9.8",
     "tailwindcss": "^4",
     "typescript": "5.8.3"
   }
