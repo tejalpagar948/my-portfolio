@@ -1,126 +1,160 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+
+import React, { useState } from 'react';
 import SocialMediaIcons from '../social-media-icons';
-import Button from '../button';
 import Image from 'next/image';
 
-interface ContactSectionProps {}
-
-const ContactSection: React.FC<ContactSectionProps> = () => {
-  const [formData, setFormData] = useState<Record<string, string>>({});
+const ContactSection: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    resume: null as File | null,
+    resumeBase64: '',
+  });
 
   const formFields = [
+    { id: 'name', name: 'name', type: 'text', placeholder: 'Your Name' },
+    { id: 'email', name: 'email', type: 'email', placeholder: 'Your Email' },
     {
-      id: "name",
-      name: "name",
-      type: "text",
-      placeholder: "Your Name",
-      spanClass: "name-span",
+      id: 'subject',
+      name: 'subject',
+      type: 'text',
+      placeholder: 'Your Subject',
     },
     {
-      id: "email",
-      name: "email",
-      type: "email",
-      placeholder: "Your Email",
-      spanClass: "email-span",
-    },
-    {
-      id: "subject",
-      name: "subject",
-      type: "text",
-      placeholder: "Your Subject",
-      spanClass: "subject-span",
-    },
-    {
-      id: "message",
-      name: "message",
-      type: "textarea",
-      placeholder: "Your Message",
-      spanClass: "message-span",
+      id: 'message',
+      name: 'message',
+      type: 'textarea',
+      placeholder: 'Your Message',
       rows: 10,
       cols: 20,
     },
+    { id: 'resume', name: 'resume', type: 'file', accept: '.pdf' },
   ];
 
   const infoList = [
     {
-      icon: "./assets/icons/phone.svg",
-      iconAlt: "",
-      heading: "Email",
-      info: ["devis@example.com", "devis@example.com"],
+      icon: './assets/icons/phone.svg',
+      iconAlt: '',
+      heading: 'Email',
+      info: ['devis@example.com', 'devis@example.com'],
     },
     {
-      icon: "./assets/icons/phone.svg",
-      iconAlt: "",
-      heading: "Email",
-      info: ["devis@example.com", "devis@example.com"],
+      icon: './assets/icons/phone.svg',
+      iconAlt: '',
+      heading: 'Email',
+      info: ['devis@example.com', 'devis@example.com'],
+    },
+    {
+      icon: './assets/icons/phone.svg',
+      iconAlt: '',
+      heading: 'Email',
+      info: ['devis@example.com', 'devis@example.com'],
     },
   ];
 
-  // ✅ Initialize state keys from formFields
-  useEffect(() => {
-    let init: Record<string, string> = {};
-    formFields.forEach((f) => {
-      init[f.name] = "";
+  // Convert file to Base64
+  const convertToBase64 = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
     });
-    setFormData(init);
-  }, []);
 
-  // ✅ handleChange works for both input + textarea
-  const handleChange = (
+  const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+
+    if (name === 'resume' && e.target instanceof HTMLInputElement) {
+      const file = e.target.files?.[0] || null;
+      if (file) {
+        const base64 = await convertToBase64(file);
+        setFormData((prev) => ({
+          ...prev,
+          resume: file,
+          resumeBase64: base64,
+        }));
+      }
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    const webAppUrl =
-      "https://script.google.com/macros/s/AKfycbyn6Bgd3AzUtrhOWMNQiiU3ORYlnKlq00BUOFgGL4Poj6gc4CoChtR2t340XHBS4wIGJg/exec"; // replace with your URL
-  
-    try {  
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+
+    console.log('clicked');
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        resumeBase64: formData.resumeBase64 || '',
+      };
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-      
 
       const json = await res.json();
-      if (json.status === "success") {
-        alert("Saved to Google Sheet ✅");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+
+      if (json.status === 'success') {
+        alert('Saved to Google Sheet and PDF sent! ✅');
+
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          resume: null,
+          resumeBase64: '',
+        });
       } else {
-        alert("Error: " + JSON.stringify(json));
+        alert('Error: ' + JSON.stringify(json));
       }
     } catch (err) {
-      console.error("Submit error:", err);
-      alert("Submit failed — check console. (CORS?)");
+      console.error('Submit error:', err);
+      alert('Submit failed — check console.');
     }
   };
-  
 
   return (
     <section className="contact-me" id="contact">
       <div className="wrapper pb-24">
-        <h3 className="">Contact me</h3>
+        <h3>Contact me</h3>
+
         <div className="contact-me-content flex flex-col md:flex-row gap-13">
           <div className="contact-form w-full md:w-1/2">
             <h4>Just say Hello</h4>
 
-            {/* ✅ fixed form */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-7 mt-5">
               {formFields.map((field) => (
-                <div className={field.name} key={field.id}>
-                  {field.type === "textarea" ? (
+                <div key={field.id}>
+                  {field.type === 'textarea' ? (
                     <textarea
                       id={field.id}
                       name={field.name}
                       placeholder={field.placeholder}
                       rows={field.rows}
                       cols={field.cols}
-                      value={formData[field.name] || ""}
+                      value={(formData as any)[field.name]}
+                      onChange={handleChange}
+                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
+                    />
+                  ) : field.type === 'file' ? (
+                    <input
+                      type="file"
+                      id={field.id}
+                      name={field.name}
+                      accept={field.accept}
                       onChange={handleChange}
                       className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
                     />
@@ -130,22 +164,21 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
                       id={field.id}
                       name={field.name}
                       placeholder={field.placeholder}
-                      value={formData[field.name] || ""}
+                      value={(formData as any)[field.name]}
                       onChange={handleChange}
                       className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
                     />
                   )}
-                  <span className={field.spanClass}></span>
                 </div>
               ))}
-            <button
+
+              <button
                 type="submit"
-                className="capitalize bg-custom-yellow text-custom-black py-3 px-12 rounded-4xl"
-              >Submit
-            </button>
+                className="capitalize bg-custom-yellow text-custom-black py-3 px-12 rounded-4xl">
+                Submit
+              </button>
             </form>
           </div>
-
           {/* right side contact info */}
           <div className="contact-info w-full md:w-1/2 flex flex-col gap-4">
             <h4>Contact Info</h4>

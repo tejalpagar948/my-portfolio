@@ -17,7 +17,7 @@ const AboutUs: React.FC<AboutUsProps> = () => {
         <h3 className="all-caps">about me</h3>
         <div className="about-content gap-13 flex flex-col md:flex-row">
           <figure className="about-content-left w-full md:w-1/2 ">
-            <Image src={PersonImg} alt="Tejal Pagar" className="h-106" />
+            <Image src={PersonImg} alt="Tejal Pagar" className="h-128" />
           </figure>
           <div className="about-content-right w-full md:w-1/2 flex flex-col gap-5 py-4 px-0">
             <h4 className="capitalize">hi, i'm tejal pagar</h4>
