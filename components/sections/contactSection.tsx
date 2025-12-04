@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import SocialMediaIcons from '../social-media-icons';
 import Image from 'next/image';
