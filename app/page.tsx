@@ -12,6 +12,7 @@ import type { Page } from '@/sanity.types';
 export default async function Home() {
   const data = await client.fetch<Page>(`*[_type == "page"][0]`);
   const hero = data?.content?.find((item) => item._type === 'heroSection');
+
   return (
     <>
       {hero && <HeroSection value={hero} />}
