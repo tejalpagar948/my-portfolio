@@ -1,4 +1,3 @@
-'use client';
 import HeroSection from '@/components/sections/hero-section';
 import AboutUs from '@/components/sections/about-us-section';
 import KeySkillsSection from '@/components/sections/key-skills-section';
