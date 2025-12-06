@@ -14,7 +14,6 @@ import type { HeroSection as HeroSectionType } from '@/sanity.types';
 interface HeroSectionProps {
   value?: HeroSectionType;
 }
-
 const HeroSection: React.FC<HeroSectionProps> = ({ value }) => {
   if (!value) return null;
   return (
