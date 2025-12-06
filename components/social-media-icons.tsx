@@ -2,8 +2,12 @@ import React from 'react'
 import Image from 'next/image'; 
 
 interface SocialMediaIconsProps{
+  className?: string; 
+  childClassName?: string;
 }
 const SocialMediaIcons : React.FC<SocialMediaIconsProps>=({
+  className = '',
+  childClassName = '',
 })=>{
   const socialLinks = [
     {
@@ -31,9 +35,10 @@ const SocialMediaIcons : React.FC<SocialMediaIconsProps>=({
 
   return(
     <>
-    <ul className="social-media-icons absolute bottom-[4.2%] translate-x-[-360px] w-auto flex gap-4.5 bg-custom-navy-blue rounded-bl-[50px] rounded-tl-[50px] p-4 border border-custom-dark-gray border-r-0 -z-10">
-    { socialLinks.map((item ,index) => (
-         <li  key={index} className="social-media-icons-items w-[12%] overflow-hidden flex rounded-[42px] borde-custom-white bg-[#070d1b] px-4 py-3 gap-4 border border-[0.5px] border-custom-dark-gray">
+    <ul className={`social-media-icons w-auto flex gap-4.5 ${className}`}>
+    {socialLinks.map((item ,index) => (
+         <li  key={index} className={`social-media-icons-items overflow-hidden flex rounded-[42px] borde-custom-white bg-[#070d1b] px-4 py-3 gap-4 border border-[0.5px] border-custom-dark-gray ${childClassName} hover:w-auto transition-all duration-[1500ms] ease-in-out
+         `}>
          <Image
            src={item.icon}
            alt=""

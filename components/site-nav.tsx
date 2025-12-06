@@ -15,22 +15,22 @@ const SiteNav: React.FC<SiteNavProps> = () => {
     },
     {
       label: "About",
-      href: "#FIXME",
+      href: "#about",
       title: "About",
     },
     {
       label: "Resume",
-      href: "#FIXME",
+      href: "#resume",
       title: "Resume",
     },
     {
-      label: "Portfolio",
-      href: "#FIXME",
-      title: "Portfolio",
+      label: "Project",
+      href: "#project",
+      title: "Project",
     },
     {
       label: "Contact",
-      href: "#FIXME",
+      href: "#contact", 
       title: "Contact",
     },
     {
@@ -42,8 +42,8 @@ const SiteNav: React.FC<SiteNavProps> = () => {
   ];  
   
   return (
-    <nav>
-      <ul className="flex gap-6 items-center">
+    <nav className=''>
+      <ul className="gap-6 items-center hidden md:flex">
       {navItems.map((item, index) => (
           <li key={index} className={item.icon ? "phone-number relative flex items-center pl-7 " : ""}>
             {item.icon && (
