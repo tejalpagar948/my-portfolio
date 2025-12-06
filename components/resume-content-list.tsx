@@ -6,25 +6,24 @@ interface ResumeContentListProps {}
 const ResumeContentList: React.FC<ResumeContentListProps> = () => {
   const resumeData = [
     {
-      sectionTitle: "Experience",
-      icon: "./assets/icons/coding.svg",
+      sectionTitle: 'Experience',
+      icon: './assets/icons/coding.svg',
       items: [
         {
-          title: "Senior UX/UI Designer",
-          period: "Jan 2020 - Present",
-          organisation: "Bergnaum, Hills and Howe",
+          title: 'Senior UX/UI Designer',
+          period: 'Jan 2020 - Present',
+          organisation: 'Bergnaum, Hills and Howe',
           description:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic numquam optio culpa.",
+            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic numquam optio culpa.',
         },
         {
-          title: "Lead Developer",
-          period: "Feb 2018 - Dec 2019",
-          organisation: "Some Company",
-          description:
-            "Led the development team to build scalable web apps.",
+          title: 'Lead Developer',
+          period: 'Feb 2018 - Dec 2019',
+          organisation: 'Some Company',
+          description: 'Led the development team to build scalable web apps.',
         },
       ],
-    }
+    },
   ];
 
   return (
@@ -34,7 +33,7 @@ const ResumeContentList: React.FC<ResumeContentListProps> = () => {
           <div className="resume-caption flex gap-7">
             <Image
               src={item.icon}
-              alt={item.sectionTitle + " icon"}
+              alt={item.sectionTitle + ' icon'}
               width={20}
               height={20}
               className="w-12"
@@ -45,8 +44,7 @@ const ResumeContentList: React.FC<ResumeContentListProps> = () => {
             {item.items.map((inneritem) => (
               <li
                 key={inneritem.title}
-                className="resume-content-list-item pt-[1px] px-10 pb-12 flex flex-col gap-3 border-l-[1.5px] border-custom-grayish-blue relative pr-0 md:pr-10"
-              >
+                className="resume-content-list-item pt-[1px] px-10 pb-12 flex flex-col gap-3 border-l-[1.5px] border-custom-grayish-blue relative pr-0 md:pr-10">
                 <h5 className="text-xl mt-[-20px]">{inneritem.title}</h5>
                 <span className="period text-custom-light-gray text-base">
                   {inneritem.period}
