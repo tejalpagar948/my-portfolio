@@ -108,7 +108,11 @@ h6 {
 }
 
 .resume-content-list-item::before {
-  @apply content-[''] absolute w-[12px] h-[12px] rounded-full top-[-5px] left-0 bg-[#101624] border-2 border-custom-dark-gray -translate-x-1/2 -translate-y-1/2;
+  @apply content-[''] absolute w-[12px] h-[12px] rounded-full top-[-5px] left-0 border-2 border-custom-dark-gray -translate-x-1/2 -translate-y-1/2 bg-[#101624];
+}
+
+.resume-content-list-item:hover::before {
+  @apply bg-custom-yellow;
 }
 
 .resume-content-list-item:last-child {
@@ -119,4 +123,13 @@ h6 {
   content: '';
   transform: translateX(-50%) rotate(45deg);
   @apply w-7 h-7 border-r border-r-custom-grayish-blue border-b border-b-custom-grayish-blue bg-custom-navy-blue absolute left-1/2 -bottom-3.5 z-30;
+}
+
+.review-para:hover::after {
+  @apply border-custom-yellow;
+}
+
+.custom-slick-wrapper .slick-track {
+  display: flex !important;
+  gap: 1rem;
 }

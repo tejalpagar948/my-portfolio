@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+import React ,{ useEffect } from 'react';
 
 interface SkillsSectionProps {
 }
@@ -12,6 +13,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
     { name: "Next JS", percentage: "99%" }
   ]
 
+    useEffect(() => {
+      console.log("Component has loaded!");
+    }, []);
+  
   return (
     <section className="skills">
     <div className="wrapper">
