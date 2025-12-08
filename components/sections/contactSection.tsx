@@ -127,7 +127,7 @@ const ContactSection: React.FC = () => {
 
   return (
     <section className="contact-me" id="contact">
-      <div className="wrapper pb-24">
+      <div className="wrapper">
         <h3>Contact me</h3>
 
         <div className="contact-me-content flex flex-col md:flex-row gap-13">
@@ -214,7 +214,7 @@ const ContactSection: React.FC = () => {
               </span>
               <SocialMediaIcons
                 className={`pt-6 px-0 pb-5`}
-                childClassName={`w-[10%]`}
+                childClassName={`w-auto md:w-[10%]`}
               />
             </div>
           </div>
