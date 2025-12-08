@@ -32,7 +32,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <section className="reviews pb-24 relative">
+    <section className="reviews relative">
       <div className="wrapper">
         <h3 className="">Reviews</h3>
         <ul className="review-list flex flex-wrap md:flex-nowrap gap-7">

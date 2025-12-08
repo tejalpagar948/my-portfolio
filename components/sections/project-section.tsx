@@ -32,7 +32,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({}) => {
   ];
 
   return (
-    <section className="projects pb-24" id="project">
+    <section className="projects" id="project">
       <div className="wrapper">
         <h3 className="all-caps">projects</h3>
         <ul className="project-list flex flex-wrap md:flex-nowrap gap-8">

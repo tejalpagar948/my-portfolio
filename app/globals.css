@@ -17,6 +17,14 @@
   --color-custom-grayish-blue: #232935;
 }
 
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  caret-color: transparent !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -45,7 +53,7 @@ html {
 }
 
 section .wrapper {
-  @apply pt-24 px-0 pb-0;
+  @apply py-10 md:py-15 px-0;
 }
 
 .first-letter-caps {
@@ -132,4 +140,8 @@ h6 {
 .custom-slick-wrapper .slick-track {
   display: flex !important;
   gap: 1rem;
+}
+
+.banner h2 {
+  @apply text-[70px] md:text-8xl;
 }
