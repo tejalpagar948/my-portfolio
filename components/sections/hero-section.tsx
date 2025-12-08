@@ -19,7 +19,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ value }) => {
   return (
     <>
       <section className="banner relative">
-        <div className="wrapper flex justify-between items-center lg:pt-14  w-5/6 mx-auto">
+        <div className="wrapper flex justify-between items-center lg:pt-14 h-[550px] md:h-full">
           <div className="banner-left w-full md:w-4/8 text-custom-white">
             <span className="capitalize text-3xl text-custom-yellow">
               hello i'm
