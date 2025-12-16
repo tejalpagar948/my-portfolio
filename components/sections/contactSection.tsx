@@ -146,7 +146,7 @@ const ContactSection: React.FC = () => {
                       cols={field.cols}
                       value={(formData as any)[field.name]}
                       onChange={handleChange}
-                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
+                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-3.5 md:py-4.5 px-5"
                     />
                   ) : field.type === 'file' ? (
                     <input
@@ -155,7 +155,7 @@ const ContactSection: React.FC = () => {
                       name={field.name}
                       accept={field.accept}
                       onChange={handleChange}
-                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
+                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-3.5 md:py-4.5 px-5"
                     />
                   ) : (
                     <input
@@ -165,7 +165,7 @@ const ContactSection: React.FC = () => {
                       placeholder={field.placeholder}
                       value={(formData as any)[field.name]}
                       onChange={handleChange}
-                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5"
+                      className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-3.5 md:py-4.5 px-5"
                     />
                   )}
                 </div>
@@ -214,7 +214,7 @@ const ContactSection: React.FC = () => {
               </span>
               <SocialMediaIcons
                 className={`pt-6 px-0 pb-5`}
-                childClassName={`w-auto md:w-[10%]`}
+                childClassName={`w-auto md:w-[53px]`}
               />
             </div>
           </div>
