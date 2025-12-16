@@ -11,6 +11,7 @@
     "sanity:typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@pixi/filter-displacement": "^7.4.3",
     "@sanity/client": "^7.13.0",
     "@sanity/image-url": "^1.2.0",
     "@sanity/structure": "^2.36.2",
@@ -22,8 +23,10 @@
     "hamburger-react": "^2.5.2",
     "next": "^16.0.7",
     "next-sanity": "^11.6.6",
+    "pixi.js": "^8.14.3",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-liquid-gauge": "^1.2.4",
     "react-slick": "^0.30.3",
     "sanity": "^4.15.0",
     "slick-carousel": "^1.8.1",
