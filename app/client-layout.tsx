@@ -13,17 +13,13 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname();
   const isStudioRoute = pathname?.startsWith('/studio');
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Stop loader when page has fully loaded
-    const handleLoaded = () => setLoading(false);
-    window.addEventListener('load', handleLoaded);
-    return () => window.removeEventListener('load', handleLoaded);
+    const timer = setTimeout(() => setLoading(false), 300);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Show loader before rendering the site (but not in studio route)
   if (!isStudioRoute && loading) return <LoadingCircleSpinner />;
 
   return (
