@@ -142,6 +142,10 @@ h6 {
   gap: 1rem;
 }
 
+.custom-slick-wrapper {
+  overflow-x: clip;
+}
+
 .banner h2 {
   @apply text-[70px] lg:text-8xl;
 }
@@ -149,11 +153,6 @@ h6 {
 canvas {
   display: block;
 }
-
-/* .slick-prev::before,
-.slick-next::before {
-  font-size: 25px !important;
-} */
 
 .next-slick {
   @apply md:right-[-67px];
@@ -170,4 +169,25 @@ canvas {
 
 .reviews .wrapper {
   @apply !pb-0;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #121c30; /* thumb color */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #0a101e; /* hover color */
+}
+
+section {
+  overflow-x: clip;
 }
