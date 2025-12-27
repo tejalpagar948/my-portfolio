@@ -8,60 +8,63 @@ export default defineType({
     {
       name: "heroContent",
       title: "Hero Content",
-      description: "Add the heading and description for the hero section",
+      description: "Add the hero text content",
       type: "array",
       of: [
         {
           type: "block",
-          styles: [{ title: "Heading", value: "h2" }], // Only normal and h1 text
-          lists: [], // No lists
+
+          // BLOCK-LEVEL STYLES (whole line only)
+          styles: [
+            { title: "Heading", value: "h2" },
+          ],
+
+          lists: [],
+
+          // INLINE STYLES (span with classes)
           marks: {
             decorators: [
               { title: "Strong", value: "strong" },
               { title: "Emphasis", value: "em" },
               { title: "Underline", value: "underline" },
-              { title: "Highlight", value: "highlight" }, // Custom highlight decorator
+              { title: "Yellow Span", value: "yellowSpan" },
+              { title: "Gray Span", value: "graySpan" },
             ],
-            annotations: [], // No link annotations etc.
+            annotations: [],
           },
         },
       ],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
+
     {
       name: "image",
       title: "Hero Image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
-      description: "Upload a hero image for the section aspect ratio 16:9",
-      validation: (Rule) => Rule.required(),
+      options: { hotspot: true },
+      validation: (Rule: any) => Rule.required(),
       fields: [
         {
           name: "alt",
           title: "Alt Text",
-          description:
-            "Enter the alt text for the image for accessibility and SEO",
           type: "string",
-          validation: (Rule) => Rule.required(),
+          validation: (Rule: any) => Rule.required(),
         },
       ],
     },
+
     {
       name: "cta",
       title: "CTA",
-      description: "Add a CTA button to the section (optional)",
       type: "ctaObject",
     },
   ],
+
   preview: {
-    select: {
-      media: "image",
-    },
-    prepare({ media }) {
+    select: { media: "image" },
+    prepare({ media }: { media: any }) {
       return {
-        title: "Hero section",
+        title: "Hero Section",
         media,
       };
     },
