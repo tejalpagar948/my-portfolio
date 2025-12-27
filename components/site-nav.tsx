@@ -41,7 +41,7 @@ const SiteNav: React.FC<SiteNavProps> = () => {
 
   return (
     <nav className="">
-      <ul className="gap-6 items-center hidden lg:flex">
+      <ul className="gap-6 items-center hidden xl:flex">
         {navItems.map((item, index) => (
           <li
             key={index}

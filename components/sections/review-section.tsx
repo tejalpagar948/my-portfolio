@@ -43,7 +43,7 @@ const ReviewSection: React.FC = () => {
   });
 
   return (
-    <section className="reviews relative pb-10 md:pb-15">
+    <section className="reviews relative pb-10 md:pb-15" id="reviews">
       <div className="wrapper">
         <h3 className="mb-10">Reviews</h3>
         {/* ⭐ If more than 3 show slider */}
@@ -67,10 +67,7 @@ const ReviewSection: React.FC = () => {
       </div>
 
       {/* ⭐ Floating Button */}
-      <div className="sticky flex gap-2.5 z-50  mt-10  bottom-5 justify-end align-bottom items-end pr-3.5">
-        <span className="bg-[#3f4551] py-1 px-3 rounded-lg text-sm h-auto rounded-tr-none">
-          Write a Review
-        </span>
+      <div className="sticky flex gap-2.5 z-50  mt-10 bottom-8 left-24 justify-start align-center items-center pl-3.5">
         <button
           onClick={() => setIsModalOpen(true)}
           className="capitalize bg-custom-yellow text-custom-black py-3 px-3 rounded-4xl ">
@@ -112,6 +109,9 @@ const ReviewSection: React.FC = () => {
             <path d="M23 11l1-1 2 2-1 1z" fill="#3f4551" />
           </svg>
         </button>
+        <span className="bg-white text-[#121c30] py-1 px-3 rounded-lg text-sm h-auto rounded-tl-none hidden md:block mt-[8px]">
+          Write a Review
+        </span>
       </div>
 
       {/* ⭐ Modal */}
@@ -135,7 +135,7 @@ export default ReviewSection;
 
 // ⭐ CARD COMPONENT (Fixed border class)
 const ReviewCard = ({ item }: any) => (
-  <div className="group review-list-item w-full flex flex-col align-center">
+  <div className="review-card group review-list-item w-full flex flex-col align-center">
     <p className="review-para text-center bg-custom-navy-blue border border-custom-grayish-blue py-5 px-2 relative group-hover:border-custom-yellow group-hover:after:border-custom-yellow">
       {item.text}
     </p>

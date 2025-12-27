@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
-import LoadingCircleSpinner from '@/components/loading-circle-spinner';
+import PortfolioLoader from '@/components/portfolio-loader';
 
 export default function ClientLayout({
   children,
@@ -20,7 +20,7 @@ export default function ClientLayout({
     return () => clearTimeout(timer);
   }, []);
 
-  if (!isStudioRoute && loading) return <LoadingCircleSpinner />;
+  if (!isStudioRoute && loading) return <PortfolioLoader />;
 
   return (
     <>
