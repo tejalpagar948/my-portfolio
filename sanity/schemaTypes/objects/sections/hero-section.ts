@@ -61,12 +61,16 @@ export default defineType({
   ],
 
   preview: {
-    select: { media: "image" },
-    prepare({ media }: { media: any }) {
+    select: {
+      title: 'heading', // or any text field
+      media: 'image',
+    },
+    prepare({ title, media }) {
       return {
-        title: "Hero Section",
+        title: title || 'Hero Section',
         media,
-      };
+      }
     },
   },
+
 });
