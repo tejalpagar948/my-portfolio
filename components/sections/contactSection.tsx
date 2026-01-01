@@ -1,9 +1,42 @@
 'use client';
 import React, { useState } from 'react';
 import SocialMediaIcons from '../social-media-icons';
+import { ContactSection as ContactSectionType } from '@/sanity.types';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { PortableText } from '../portable-text';
 
-const ContactSection: React.FC = () => {
+type ContactItemWithIcon = {
+  label?: string;
+  valuePrimary?: string;
+  valueSecondary?: string;
+  icon?: any;
+};
+
+type SocialLink = {
+  platform?: string;
+  url?: string;
+  icon?: any;
+};
+
+type SocialItem = {
+  socialTitle?: string;
+  socialLinks?: SocialLink[];
+};
+
+type ContactWithContent = {
+  _id?: string;
+  title?: string;
+  content?: any;
+  contactItems?: ContactItemWithIcon[];
+  socialTitle?: string;
+  socialLinks?: SocialLink[];
+};
+interface ContactSectionProps {
+  value?: ContactSectionType;
+}
+
+const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,27 +64,6 @@ const ContactSection: React.FC = () => {
       cols: 20,
     },
     { id: 'resume', name: 'resume', type: 'file', accept: '.pdf' },
-  ];
-
-  const infoList = [
-    {
-      icon: './assets/icons/phone.svg',
-      iconAlt: '',
-      heading: 'Email',
-      info: ['devis@example.com', 'devis@example.com'],
-    },
-    {
-      icon: './assets/icons/phone.svg',
-      iconAlt: '',
-      heading: 'Email',
-      info: ['devis@example.com', 'devis@example.com'],
-    },
-    {
-      icon: './assets/icons/phone.svg',
-      iconAlt: '',
-      heading: 'Email',
-      info: ['devis@example.com', 'devis@example.com'],
-    },
   ];
 
   // Convert file to Base64
@@ -87,7 +99,6 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log('clicked');
     try {
       const payload = {
         name: formData.name,
@@ -107,7 +118,6 @@ const ContactSection: React.FC = () => {
 
       if (json.status === 'success') {
         alert('Saved to Google Sheet and PDF sent! ✅');
-
         setFormData({
           name: '',
           email: '',
@@ -128,9 +138,9 @@ const ContactSection: React.FC = () => {
   return (
     <section className="contact-me" id="contact">
       <div className="wrapper">
-        <h3>Contact me</h3>
-
+        <h3>{value?.sectiontitle}</h3>
         <div className="contact-me-content flex flex-col md:flex-row gap-13">
+          {/* Left side - Form */}
           <div className="contact-form w-full md:w-1/2">
             <h4>Just say Hello</h4>
 
@@ -178,46 +188,58 @@ const ContactSection: React.FC = () => {
               </button>
             </form>
           </div>
-          {/* right side contact info */}
-          <div className="contact-info w-full md:w-1/2 flex flex-col gap-4">
-            <h4>Contact Info</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Suscipit, laudantium.
-            </p>
-            <ul className="info-list flex flex-col gap-5">
-              {infoList.map((item, index) => (
-                <li key={index} className="info-list-item flex gap-5">
-                  <Image
-                    src={item.icon}
-                    alt={item.iconAlt}
-                    width={20}
-                    height={20}
-                    className="rounded-full w-11 h-11 border border-custom-grayish-blue py-2 px-3"
-                  />
-                  <div className="info-content flex flex-col">
-                    <h6 className="mb-1">{item.heading}</h6>
-                    <span className="info leading-6 text-custom-light-gray">
-                      {item.info[0]}
-                    </span>
-                    <span className="info leading-6 text-custom-light-gray">
-                      {item.info[1]}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
 
-            <div className="social-media pt-6 px-0 pb-5">
-              <span className="optional-para text-xl text-custom-light-gray">
-                Visit my social profile and get connected
-              </span>
-              <SocialMediaIcons
-                className={`pt-6 px-0 pb-5`}
-                childClassName={`w-auto md:w-[53px]`}
-              />
-            </div>
-          </div>
+          {/* Right side - Contact info */}
+          {value?.contacts?.map((contactRef, index) => {
+            const contact = contactRef as ContactWithContent;
+
+            return (
+              <div
+                key={index}
+                className="contact-info w-full md:w-1/2 flex flex-col gap-4">
+                {/* Portable Text */}
+                {contact.content && <PortableText value={contact.content} />}
+                {/* Contact Items */}
+                <ul className="info-list flex flex-col gap-5">
+                  {contact?.contactItems?.map((contactItem, idx) => (
+                    <li key={idx} className="info-list-item flex gap-5">
+                      {contactItem?.icon && (
+                        <Image
+                          src={urlFor(contactItem.icon).url()}
+                          alt={contactItem.label || 'icon'}
+                          width={20}
+                          height={20}
+                          priority
+                          unoptimized
+                          className="rounded-full w-11 h-11 border border-custom-grayish-blue py-2 px-3"
+                        />
+                      )}
+                      <div className="info-content flex flex-col">
+                        <h6 className="mb-1">{contactItem?.label}</h6>
+                        <span className="info leading-6 text-custom-light-gray">
+                          {contactItem?.valuePrimary}
+                        </span>
+                        <span className="info leading-6 text-custom-light-gray">
+                          {contactItem?.valueSecondary}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                {/* Social Items */}
+                <div className="social-media pt-6 px-0 pb-5">
+                  <span className="optional-para text-xl text-custom-light-gray">
+                    {contact?.socialTitle}
+                  </span>
+                  <SocialMediaIcons
+                    className={`pt-6 px-0 pb-5`}
+                    childClassName={`w-auto md:w-[53px]`}
+                    socialLinks={contact?.socialLinks || []}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

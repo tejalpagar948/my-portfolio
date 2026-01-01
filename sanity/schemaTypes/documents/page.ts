@@ -1,6 +1,11 @@
 import { defineType, defineField } from "sanity";
-import heroSection from "../objects/sections/hero-section";
+import { heroSection } from "../objects/sections/hero-section";
+import { aboutSection } from "../objects/sections/about-section";
+import { skillSection } from "../objects/sections/skill-section";
+import { resumeSection } from "../objects/sections/resume-section";
+import { reviewsSection } from "../objects/sections/reviews-section";
 import { ComposeIcon, DocumentIcon, SearchIcon } from "@sanity/icons";
+import { skillProficiencySection } from "../objects/sections/skill-proficiency-section";
 
 export const page = defineType({
   name: "page",
@@ -33,8 +38,14 @@ export const page = defineType({
       title: "Content",
       type: "array",
       of: [
-        { type: "block" },
-        { type: heroSection.name }, // ✅ works because heroSection is default export
+        { type: "heroSection" },
+        { type: "aboutSection" },
+        { type: "skillSection" },
+        { type: "skillProficiencySection" },
+        { type: "resumeSection" },
+        { type: "reviewsSection" },
+        { type: "projectSection" },
+        { type: "contactSection" },
       ],
       validation: (Rule) => Rule.required(),
       group: "content",

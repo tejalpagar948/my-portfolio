@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 
-export default defineType({
+export const heroSection = defineType({
   name: "heroSection",
   title: "Hero Section",
   type: "object",
@@ -34,7 +34,7 @@ export default defineType({
           },
         },
       ],
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule) => Rule.required(),
     },
 
     {
@@ -42,21 +42,20 @@ export default defineType({
       title: "Hero Image",
       type: "image",
       options: { hotspot: true },
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule) => Rule.required(),
       fields: [
         {
           name: "alt",
           title: "Alt Text",
           type: "string",
-          validation: (Rule: any) => Rule.required(),
+          validation: (Rule) => Rule.required(),
         },
       ],
     },
-
     {
       name: "cta",
       title: "CTA",
-      type: "ctaObject",
+      type: "cta",
     },
   ],
 
