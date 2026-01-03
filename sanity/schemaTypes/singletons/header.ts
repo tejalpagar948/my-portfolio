@@ -17,9 +17,9 @@ export const header = defineType({
           type: "object",
           fields: [
             defineField({
-              name: "link",
-              title: "Link",
-              type: "link",
+              name: "linkObject",
+              title: "Link Object",
+              type: "linkObject",
               validation: (Rule) => Rule.required(),
             }),
           ],

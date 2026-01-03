@@ -7,7 +7,7 @@ import ReviewSection from '@/components/sections/review-section';
 import ProjectSection from '@/components/sections/project-section';
 import ContactSection from '@/components/sections/contactSection';
 
-import { getHomePage } from '@/sanity/lib/queries';
+import { getFooter, getHomePage } from '@/sanity/lib/queries';
 
 export default async function Home() {
   const data = await getHomePage();

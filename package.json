@@ -23,6 +23,7 @@
     "@sanity/structure": "^2.36.2",
     "@sanity/vision": "^4.15.0",
     "@supabase/supabase-js": "^2.86.0",
+    "aos": "^2.3.4",
     "autoprefixer": "^10.4.21",
     "babel-plugin-styled-components": "^2.1.4",
     "formidable": "^3.5.4",

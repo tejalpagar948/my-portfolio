@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import type { Skill } from '@/sanity.types';
+import AOS from 'aos';
 
 type SkillItem = {
   _id: string;
@@ -25,9 +26,16 @@ const KeySkillsCard: React.FC<KeySkillsCardProps> = ({ skills }) => {
     setVisibleCount((prev) => prev + ITEMS_PER_LOAD);
   };
 
+  useEffect(() => {
+    AOS.refresh();
+  }, [skills]);
+
   return (
     <>
-      <ul className="key-skill-list flex gap-7 flex-wrap">
+      <ul
+        className="key-skill-list flex gap-7 flex-wrap"
+        data-aos="fade-up"
+        data-aos-delay="100">
         {skills.slice(0, visibleCount).map((item, index) => (
           <li
             key={index}

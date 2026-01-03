@@ -22,7 +22,6 @@ const SocialMediaIcons: React.FC<SocialMediaIconsProps> = ({
   childClassName = '',
   socialLinks,
 }) => {
-  console.log('Social Links:', socialLinks);
   return (
     <ul className={`social-media-icons w-auto flex gap-4.5 ${className}`}>
       {socialLinks?.map((item, index) => (

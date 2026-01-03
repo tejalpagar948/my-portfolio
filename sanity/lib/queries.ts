@@ -1,5 +1,8 @@
 import { client } from "./client";
 import type { Page } from "../../sanity.types";
+import type { Header } from "../../sanity.types";
+import type { Footer } from "../../sanity.types";
+import type { SiteConfig } from "../../sanity.types";
 
 /* ----------------------------------
    CTA QUERY FRAGMENT
@@ -149,3 +152,57 @@ export async function getHomePage(): Promise<Page> {
 
   return client.fetch<Page>(query);
 }
+
+
+export async function getHeader(): Promise<Header | null> {
+  const query = `*[_type == "header"][0]{
+    _id,
+    _type,
+    "nav": nav[] {
+      "title": link.label,
+      "url": select(
+        link.urlType == "external" => link.externalUrl,
+        link.urlType == "internal" => link.internalPage->slug.current,
+        link.urlType == "section" => link.sectionId
+      )
+    },
+  cta[]{
+      "label": cta.label,
+      "urlType": cta.urlType,
+      "url": select(
+        cta.urlType == "external" => cta.externalUrl,
+        cta.urlType == "internal" => cta.internalPage->slug.current,
+        cta.urlType == "section" => cta.sectionId
+      ),
+      "icon": {
+        "url": icon.asset->url,
+        "alt": icon.alt
+      }
+    } 
+  }
+  `
+  return client.fetch<Header>(query);
+};
+
+export async function getFooter(): Promise<Footer | null> {
+  const query = `*[_type == "footer"][0]{
+  _id,
+  content
+}`
+  return client.fetch<Footer>(query);
+};
+
+export async function getSiteConfig(): Promise<SiteConfig | null> {
+  const query = `*[_type == "siteConfig"][0]{
+    name,
+    logo {
+      asset->{
+        _id,
+        url,
+        metadata
+      }
+    }
+  }
+`
+  return client.fetch<SiteConfig>(query);
+};

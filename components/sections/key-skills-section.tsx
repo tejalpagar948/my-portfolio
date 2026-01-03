@@ -1,6 +1,9 @@
-import React from 'react';
+'use client';
+import React, { use } from 'react';
 import KeySkillsCard from './key-skills-card';
 import type { SkillSection as SkillSectionType } from '@/sanity.types';
+import AOS from 'aos';
+import { useEffect } from 'react';
 
 type SkillItem = {
   _id: string;
@@ -19,10 +22,16 @@ interface KeySkillsSectionProps {
 }
 
 const KeySkillsSection: React.FC<KeySkillsSectionProps> = ({ value }) => {
+  if (!value) return null;
+  useEffect(() => {
+    AOS.refresh();
+  }, [value]);
   return (
     <section className="key-skills">
       <div className="wrapper">
-        <h3 className="all-caps">{value?.sectionTitle}</h3>
+        <h3 className="all-caps" data-aos="fade-up" data-aos-delay="100">
+          {value?.sectionTitle}
+        </h3>
         <KeySkillsCard skills={value?.skills || []} />
       </div>
     </section>

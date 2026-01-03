@@ -5,6 +5,8 @@ import { ContactSection as ContactSectionType } from '@/sanity.types';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '../portable-text';
+import AOS from 'aos';
+import { useEffect } from 'react';
 
 type ContactItemWithIcon = {
   label?: string;
@@ -63,7 +65,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
       rows: 10,
       cols: 20,
     },
-    { id: 'resume', name: 'resume', type: 'file', accept: '.pdf' },
+    // { id: 'resume', name: 'resume', type: 'file', accept: '.pdf' },
   ];
 
   // Convert file to Base64
@@ -117,7 +119,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
       const json = await res.json();
 
       if (json.status === 'success') {
-        alert('Saved to Google Sheet and PDF sent! ✅');
+        alert('Message sent successfully!');
         setFormData({
           name: '',
           email: '',
@@ -135,13 +137,22 @@ const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
     }
   };
 
+  useEffect(() => {
+    AOS.refresh();
+  }, [value]);
+
   return (
     <section className="contact-me" id="contact">
       <div className="wrapper">
-        <h3>{value?.sectiontitle}</h3>
+        <h3 data-aos="fade-up" data-aos-delay="100">
+          {value?.sectiontitle}
+        </h3>
         <div className="contact-me-content flex flex-col md:flex-row gap-13">
           {/* Left side - Form */}
-          <div className="contact-form w-full md:w-1/2">
+          <div
+            className="contact-form w-full md:w-1/2"
+            data-aos="fade-up"
+            data-aos-delay="100">
             <h4>Just say Hello</h4>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-7 mt-5">
@@ -163,7 +174,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
                       type="file"
                       id={field.id}
                       name={field.name}
-                      accept={field.accept}
+                      // accept={field.accept}
                       onChange={handleChange}
                       className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-3.5 md:py-4.5 px-5"
                     />
@@ -196,7 +207,9 @@ const ContactSection: React.FC<ContactSectionProps> = ({ value }) => {
             return (
               <div
                 key={index}
-                className="contact-info w-full md:w-1/2 flex flex-col gap-4">
+                className="contact-info w-full md:w-1/2 flex flex-col gap-4"
+                data-aos="fade-up"
+                data-aos-delay="100">
                 {/* Portable Text */}
                 {contact.content && <PortableText value={contact.content} />}
                 {/* Contact Items */}

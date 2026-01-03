@@ -56,14 +56,14 @@ export type Footer = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  Content?: Array<{
+  content?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    style?: "normal";
     listItem?: never;
     markDefs?: null;
     level?: number;
@@ -79,7 +79,7 @@ export type Header = {
   _updatedAt: string;
   _rev: string;
   nav?: Array<{
-    link?: Link;
+    linkObject?: LinkObject;
     _key: string;
   }>;
   cta?: Array<{
@@ -87,10 +87,10 @@ export type Header = {
   } & CtaWithIcon>;
 };
 
-export type Link = {
-  _type: "link";
-  title?: string;
-  linkType?: "external" | "internal" | "section";
+export type LinkObject = {
+  _type: "linkObject";
+  label?: string;
+  urlType?: "external" | "internal" | "section";
   externalUrl?: string;
   internalPage?: {
     _ref: string;
@@ -99,7 +99,6 @@ export type Link = {
     [internalGroqTypeReferenceTo]?: "page";
   };
   sectionId?: string;
-  openInNewTab?: boolean;
 };
 
 export type DateRange = {
@@ -636,5 +635,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SiteConfig | SanityImageCrop | SanityImageHotspot | Footer | Header | Link | DateRange | KeyValueItem | CtaWithIcon | Cta | ResumeItems | ContactSection | ProjectSection | ReviewsSection | ResumeSection | SkillProficiencySection | SkillSection | AboutSection | HeroSection | ContactInfo | Review | Education | Experience | Project | Skill | Page | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SiteConfig | SanityImageCrop | SanityImageHotspot | Footer | Header | LinkObject | DateRange | KeyValueItem | CtaWithIcon | Cta | ResumeItems | ContactSection | ProjectSection | ReviewsSection | ResumeSection | SkillProficiencySection | SkillSection | AboutSection | HeroSection | ContactInfo | Review | Education | Experience | Project | Skill | Page | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

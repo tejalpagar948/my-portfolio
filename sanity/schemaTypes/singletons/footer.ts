@@ -8,7 +8,7 @@ export const footer = defineType({
   icon: DocumentIcon,
   fields: [
     defineField({
-      name: "Content",
+      name: "content",
       title: "Content",
       description: "Add the text content",
       type: "array",
@@ -16,6 +16,9 @@ export const footer = defineType({
         {
           type: "block",
           lists: [],
+          styles: [
+            { title: "Normal", value: "normal" },
+          ],
           marks: {
             decorators: [
               { title: "Strong", value: "strong" },

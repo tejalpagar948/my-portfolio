@@ -9,7 +9,7 @@ import { cta } from "./sanity/schemaTypes/objects/cta";
 import { ctaWithIcon } from "./sanity/schemaTypes/objects/ctaWithIcon";
 import { dateRange } from "./sanity/schemaTypes/objects/dateRange";
 import { keyValueItem } from "./sanity/schemaTypes/objects/keyValueItem";
-import { link } from "./sanity/schemaTypes/objects/link";
+import { linkObject } from "./sanity/schemaTypes/objects/linkObject";
 import { resumeItems } from "./sanity/schemaTypes/objects/resume-items";
 import { aboutSection } from "./sanity/schemaTypes/objects/sections/about-section";
 import { contactSection } from "./sanity/schemaTypes/objects/sections/contact-section";
@@ -32,7 +32,7 @@ export const schemaTypes = [
   ctaWithIcon,
   dateRange,
   keyValueItem,
-  link,
+  linkObject,
   resumeItems,
   aboutSection,
   contactSection,

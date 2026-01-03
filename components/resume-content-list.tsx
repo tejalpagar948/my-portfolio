@@ -31,13 +31,14 @@ const ResumeContentList: React.FC<ResumeContentListProps> = ({
       year: 'numeric',
     });
   };
-  console.log('Resume Data:', resumeData);
   return (
     <div className="resume-left flex flex-col xl:flex-row gap-10">
       {resumeData.map((item, index) => (
         <div
           className="resume-content w-full md:w-1/2 flex flex-col gap-6"
-          key={index}>
+          key={index}
+          data-aos="fade-up"
+          data-aos-delay="100">
           {/* Caption */}
           <div className="resume-caption flex gap-7 items-center">
             {item.iconImage && (
@@ -78,6 +79,16 @@ const ResumeContentList: React.FC<ResumeContentListProps> = ({
                             ? `Present`
                             : formatMonthYear(value?.endDate)}
                         </span>
+                      ),
+                    },
+                    list: {
+                      bullet: ({ children }) => (
+                        <ul className="!list-disc ml-5">{children}</ul>
+                      ),
+                    },
+                    listItem: {
+                      bullet: ({ children }) => (
+                        <li className="text-custom-light-gray">{children}</li>
                       ),
                     },
                   }}
