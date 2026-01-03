@@ -84,7 +84,7 @@ h3::before {
 }
 
 h4 {
-  @apply text-4xl;
+  @apply capitalize text-4xl;
 }
 
 h5 {

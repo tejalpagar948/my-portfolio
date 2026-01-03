@@ -13,10 +13,296 @@
  */
 
 // Source: schema.json
-export type CtaObject = {
-  _type: "ctaObject";
+export type SiteConfig = {
+  _id: string;
+  _type: "siteConfig";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Header = {
+  _id: string;
+  _type: "header";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  nav?: Array<{
+    link?: Link;
+    _key: string;
+  }>;
+  cta?: Array<{
+    _key: string;
+  } & CtaWithIcon>;
+};
+
+export type Link = {
+  _type: "link";
+  title?: string;
+  linkType?: "external" | "internal" | "section";
+  externalUrl?: string;
+  internalPage?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  sectionId?: string;
+  openInNewTab?: boolean;
+};
+
+export type DateRange = {
+  _type: "dateRange";
+  startDate?: string;
+  endDate?: string;
+  isCurrent?: boolean;
+};
+
+export type KeyValueItem = {
+  _type: "keyValueItem";
+  key?: string;
+  value?: string;
+};
+
+export type CtaWithIcon = {
+  _type: "ctaWithIcon";
+  cta?: Cta;
+  icon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type Cta = {
+  _type: "cta";
   label?: string;
-  url?: string;
+  ctaType?: "url" | "file";
+  urlType?: "external" | "internal" | "section";
+  externalUrl?: string;
+  internalPage?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  sectionId?: string;
+  file?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    media?: unknown;
+    _type: "file";
+  };
+};
+
+export type ResumeItems = {
+  _type: "resumeItems";
+  title?: string;
+  iconImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  items?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "education";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "experience";
+  }>;
+};
+
+export type ContactSection = {
+  _type: "contactSection";
+  sectiontitle?: string;
+  contacts?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "contactInfo";
+  }>;
+};
+
+export type ProjectSection = {
+  _type: "projectSection";
+  sectionTitle?: string;
+  projects?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "project";
+  }>;
+};
+
+export type ReviewsSection = {
+  _type: "reviewsSection";
+  sectionTitle?: string;
+  reviews?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "review";
+  }>;
+};
+
+export type ResumeSection = {
+  _type: "resumeSection";
+  sectionTitle?: string;
+  items?: Array<{
+    _key: string;
+  } & ResumeItems>;
+};
+
+export type SkillProficiencySection = {
+  _type: "skillProficiencySection";
+  sectionTitle?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h4";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  skills?: Array<{
+    skillName?: string;
+    proficiencyPercentage?: number;
+    _type: "skill";
+    _key: string;
+  }>;
+};
+
+export type SkillSection = {
+  _type: "skillSection";
+  sectionTitle?: string;
+  skills?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "skill";
+  }>;
+};
+
+export type AboutSection = {
+  _type: "aboutSection";
+  sectionTitle?: string;
+  slug?: Slug;
+  aboutContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h4";
+    listItem?: "bullet" | "number";
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    _key: string;
+  } & KeyValueItem>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  cta?: Cta;
 };
 
 export type HeroSection = {
@@ -28,7 +314,7 @@ export type HeroSection = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1";
+    style?: "normal" | "h2";
     listItem?: never;
     markDefs?: null;
     level?: number;
@@ -48,7 +334,177 @@ export type HeroSection = {
     alt?: string;
     _type: "image";
   };
-  cta?: CtaObject;
+  cta?: Cta;
+};
+
+export type ContactInfo = {
+  _id: string;
+  _type: "contactInfo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h4";
+    listItem?: "bullet" | "number";
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  contactItems?: Array<{
+    label?: string;
+    valuePrimary?: string;
+    valueSecondary?: string;
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    _type: "contactItem";
+    _key: string;
+  }>;
+  socialTitle?: string;
+  socialLinks?: Array<{
+    platform?: string;
+    url?: string;
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    _type: "social";
+    _key: string;
+  }>;
+};
+
+export type Review = {
+  _id: string;
+  _type: "review";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  linkedin?: string;
+  approved?: boolean;
+  createdAt?: string;
+};
+
+export type Education = {
+  _id: string;
+  _type: "education";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h5";
+    listItem?: "bullet" | "number";
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    _key: string;
+  } & DateRange>;
+};
+
+export type Experience = {
+  _id: string;
+  _type: "experience";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h5";
+    listItem?: "bullet" | "number";
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    _key: string;
+  } & DateRange>;
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  projectThumbnail?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+  cta?: Cta;
+};
+
+export type Skill = {
+  _id: string;
+  _type: "skill";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  icon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
 };
 
 export type Page = {
@@ -60,41 +516,22 @@ export type Page = {
   title?: string;
   slug?: Slug;
   content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
     _key: string;
-  } | {
+  } & HeroSection | {
     _key: string;
-  } & HeroSection>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+  } & AboutSection | {
+    _key: string;
+  } & SkillSection | {
+    _key: string;
+  } & SkillProficiencySection | {
+    _key: string;
+  } & ResumeSection | {
+    _key: string;
+  } & ReviewsSection | {
+    _key: string;
+  } & ProjectSection | {
+    _key: string;
+  } & ContactSection>;
 };
 
 export type Slug = {
@@ -199,5 +636,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CtaObject | HeroSection | Page | SanityImageCrop | SanityImageHotspot | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SiteConfig | SanityImageCrop | SanityImageHotspot | Footer | Header | Link | DateRange | KeyValueItem | CtaWithIcon | Cta | ResumeItems | ContactSection | ProjectSection | ReviewsSection | ResumeSection | SkillProficiencySection | SkillSection | AboutSection | HeroSection | ContactInfo | Review | Education | Experience | Project | Skill | Page | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

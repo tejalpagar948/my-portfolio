@@ -6,6 +6,13 @@ import { TypedObject } from '@portabletext/types';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import HeroSection from '@/components/sections/hero-section';
+import AboutSection from '@/components/sections/about-us-section';
+import KeySkillsSection from '@/components/sections/key-skills-section';
+import SkillsSection from '@/components/sections/skills-section';
+import ProjectSection from '@/components/sections/project-section';
+import ResumeSection from '@/components/sections/resume-section';
+import ContactSection from '@/components/sections/contactSection';
+import ReviewSection from '@/components/sections/review-section';
 import Link from 'next/link';
 
 const components: PortableTextComponents = {
@@ -41,6 +48,13 @@ const components: PortableTextComponents = {
       );
     },
     heroSection: ({ value }) => <HeroSection value={value} />,
+    aboutSection: ({ value }) => <AboutSection value={value} />,
+    skillSection: ({ value }) => <KeySkillsSection value={value} />,
+    skillProficiencySection: ({ value }) => <SkillsSection value={value} />,
+    reviewsSection: ({ value }) => <ReviewSection value={value} />,
+    projectSection: ({ value }) => <ProjectSection value={value} />,
+    resumeSection: ({ value }) => <ResumeSection value={value} />,
+    contactSection: ({ value }) => <ContactSection value={value} />,
     // ctaObject: ({ value }: { value: CtaObject }) => {
     //   // If no type is defined, don't render anything
     //   if (!value.type) return null;
