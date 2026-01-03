@@ -235,7 +235,7 @@
           "type": "string"
         }
       },
-      "Content": {
+      "content": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -297,34 +297,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
-                    },
-                    {
-                      "type": "string",
-                      "value": "blockquote"
                     }
                   ]
                 },
@@ -419,11 +391,11 @@
           "of": {
             "type": "object",
             "attributes": {
-              "link": {
+              "linkObject": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "inline",
-                  "name": "link"
+                  "name": "linkObject"
                 },
                 "optional": true
               }
@@ -468,7 +440,7 @@
     }
   },
   {
-    "name": "link",
+    "name": "linkObject",
     "type": "type",
     "value": {
       "type": "object",
@@ -477,17 +449,17 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "link"
+            "value": "linkObject"
           }
         },
-        "title": {
+        "label": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
           },
           "optional": true
         },
-        "linkType": {
+        "urlType": {
           "type": "objectAttribute",
           "value": {
             "type": "union",
@@ -549,13 +521,6 @@
           "type": "objectAttribute",
           "value": {
             "type": "string"
-          },
-          "optional": true
-        },
-        "openInNewTab": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
           },
           "optional": true
         }

@@ -8,7 +8,7 @@ export default function ChatLauncher() {
 
   // ✅ Disable body scroll on mobile when chat is open
   useEffect(() => {
-    const isMobile = window.innerWidth < 768; // Tailwind md breakpoint
+    const isMobile = window.innerWidth < 768;
 
     if (open && isMobile) {
       document.body.style.overflow = 'hidden';
@@ -26,7 +26,7 @@ export default function ChatLauncher() {
     <>
       {/* Tooltip bubble */}
       {!open && (
-        <div className="fixed bottom-8 right-24 z-40 bg-white text-[#121c30] px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+        <div className="fixed bottom-8 right-24 z-40 bg-white text-[#121c30] px-4 py-2 rounded-full shadow-md flex items-center gap-2  hidden md:flex">
           <span className="text-sm font-medium text-[#121c30]">
             How can I help you?
           </span>

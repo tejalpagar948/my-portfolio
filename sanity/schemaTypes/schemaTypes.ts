@@ -20,10 +20,10 @@ import { dateRange } from "./objects/dateRange";
 import { header } from "./singletons/header";
 import { footer } from "./singletons/footer";
 import { siteConfig } from "./singletons/siteConfig";
-import { link } from "./objects/link";
+import { linkObject } from "./objects/linkObject";
 import { ctaWithIcon } from "./objects/ctaWithIcon";
 
 export const schemaTypes = [
-  page, skill, project, experience, education, review, contactInfo, heroSection, aboutSection, skillSection, skillProficiencySection, resumeSection, reviewsSection, projectSection, contactSection, resumeItems, cta, ctaWithIcon, keyValueItem, dateRange, link, header, footer, siteConfig
+  page, skill, project, experience, education, review, contactInfo, heroSection, aboutSection, skillSection, skillProficiencySection, resumeSection, reviewsSection, projectSection, contactSection, resumeItems, cta, ctaWithIcon, keyValueItem, dateRange, linkObject, header, footer, siteConfig
 ]
 

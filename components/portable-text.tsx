@@ -13,11 +13,12 @@ import ProjectSection from '@/components/sections/project-section';
 import ResumeSection from '@/components/sections/resume-section';
 import ContactSection from '@/components/sections/contactSection';
 import ReviewSection from '@/components/sections/review-section';
+import SiteFooter from '@/components/site-footer';
 import Link from 'next/link';
 
 const components: PortableTextComponents = {
   list: {
-    bullet: ({ children }) => <ul>{children}</ul>,
+    bullet: ({ children }) => <ul className="!list-disc">{children}</ul>,
     number: ({ children }) => <ol>{children}</ol>,
   },
   listItem: {
@@ -55,6 +56,7 @@ const components: PortableTextComponents = {
     projectSection: ({ value }) => <ProjectSection value={value} />,
     resumeSection: ({ value }) => <ResumeSection value={value} />,
     contactSection: ({ value }) => <ContactSection value={value} />,
+    siteFooter: ({ value }) => <SiteFooter value={value} />,
     // ctaObject: ({ value }: { value: CtaObject }) => {
     //   // If no type is defined, don't render anything
     //   if (!value.type) return null;
