@@ -1,0 +1,8 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="black"
+  className="h-7 w-7"
+>
+  <path d="M6 3v18l14-9z" />
+</svg>
