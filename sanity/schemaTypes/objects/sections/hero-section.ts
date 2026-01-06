@@ -1,0 +1,75 @@
+import { defineType } from "sanity";
+
+export const heroSection = defineType({
+  name: "heroSection",
+  title: "Hero Section",
+  type: "object",
+  fields: [
+    {
+      name: "heroContent",
+      title: "Hero Content",
+      description: "Add the hero text content",
+      type: "array",
+      of: [
+        {
+          type: "block",
+
+          // BLOCK-LEVEL STYLES (whole line only)
+          styles: [
+            { title: "Heading", value: "h2" },
+          ],
+
+          lists: [],
+
+          // INLINE STYLES (span with classes)
+          marks: {
+            decorators: [
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" },
+              { title: "Underline", value: "underline" },
+              { title: "Yellow Span", value: "yellowSpan" },
+              { title: "Gray Span", value: "graySpan" },
+            ],
+            annotations: [],
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+
+    {
+      name: "image",
+      title: "Hero Image",
+      type: "image",
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          name: "alt",
+          title: "Alt Text",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
+      name: "cta",
+      title: "CTA",
+      type: "cta",
+    },
+  ],
+
+  preview: {
+    select: {
+      title: 'heading', // or any text field
+      media: 'image',
+    },
+    prepare({ title, media }) {
+      return {
+        title: title || 'Hero Section',
+        media,
+      }
+    },
+  },
+
+});
