@@ -6,6 +6,7 @@ import ResumeSection from '@/components/sections/resume-section';
 import ReviewSection from '@/components/sections/review-section';
 import ProjectSection from '@/components/sections/project-section';
 import ContactSection from '@/components/sections/contactSection';
+export const dynamic = 'force-dynamic';
 
 import { getFooter, getHomePage } from '@/sanity/lib/queries';
 
