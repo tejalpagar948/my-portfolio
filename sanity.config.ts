@@ -20,4 +20,5 @@ export default defineConfig({
     structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
   ],
+  favicon: '/favicon.svg',
 })

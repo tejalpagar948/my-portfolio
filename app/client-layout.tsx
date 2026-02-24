@@ -21,7 +21,8 @@ export default function ClientLayout({
   siteConfig,
 }: ClientLayoutProps) {
   const pathname = usePathname();
-  const isStudioRoute = pathname?.startsWith('/studio');
+  const isStudioRoute =
+    pathname?.startsWith('/studio') || pathname?.startsWith('/review-form');
   const [loading, setLoading] = useState(!isStudioRoute);
 
   useEffect(() => {
@@ -40,9 +41,7 @@ export default function ClientLayout({
       {!isStudioRoute && header && siteConfig && (
         <SiteHeader header={header} siteConfig={siteConfig} />
       )}
-
       <main className="bg-custom-blue">{children}</main>
-
       {!isStudioRoute && footer && <SiteFooter value={footer} />}
     </>
   );

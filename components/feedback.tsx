@@ -81,7 +81,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-custom-blue p-10 rounded-2xl shadow-lg w-full z-100 relative">
+    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-100 relative">
       {onClose && (
         <button
           onClick={onClose}
@@ -90,7 +90,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
         </button>
       )}
 
-      <h3 className="text-xl font-bold text-white mb-6">Feedback Form</h3>
+      <h3 className="text-xl font-bold text-white !mb-12">Feedback Form</h3>
 
       {submitStatus === 'success' && (
         <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
