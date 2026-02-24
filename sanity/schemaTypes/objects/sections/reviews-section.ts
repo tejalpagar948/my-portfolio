@@ -11,11 +11,5 @@ export const reviewsSection = defineType({
       title: "Section Title",
       type: "string",
     }),
-    defineField({
-      name: "reviews",
-      title: "Reviews",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "review" }] }],
-    }),
   ],
 });

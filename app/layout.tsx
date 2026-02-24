@@ -6,6 +6,13 @@ import AOSProvider from '@/components/animation/aosProvider';
 import { getHeader } from '@/sanity/lib/queries';
 import { getFooter } from '@/sanity/lib/queries';
 import { getSiteConfig } from '@/sanity/lib/queries';
+import Providers from './providers';
+
+export const metadata = {
+  icons: {
+    icon: '/favicon.svg',
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -23,10 +30,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="text-custom-white">
-        <AOSProvider />
-        <ClientLayout header={header} footer={footer} siteConfig={siteConfig}>
-          {children}
-        </ClientLayout>
+        <Providers>
+          <AOSProvider />
+          <ClientLayout header={header} footer={footer} siteConfig={siteConfig}>
+            {children}
+          </ClientLayout>
+        </Providers>
       </body>
     </html>
   );

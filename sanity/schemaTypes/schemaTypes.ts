@@ -22,8 +22,9 @@ import { footer } from "./singletons/footer";
 import { siteConfig } from "./singletons/siteConfig";
 import { linkObject } from "./objects/linkObject";
 import { ctaWithIcon } from "./objects/ctaWithIcon";
+import { reviewInvite } from "./documents/reviewInvite"
 
 export const schemaTypes = [
-  page, skill, project, experience, education, review, contactInfo, heroSection, aboutSection, skillSection, skillProficiencySection, resumeSection, reviewsSection, projectSection, contactSection, resumeItems, cta, ctaWithIcon, keyValueItem, dateRange, linkObject, header, footer, siteConfig
+  page, skill, project, experience, education, review, contactInfo, heroSection, aboutSection, skillSection, skillProficiencySection, resumeSection, reviewsSection, projectSection, contactSection, resumeItems, cta, ctaWithIcon, keyValueItem, dateRange, linkObject, header, footer, siteConfig, reviewInvite
 ]
 

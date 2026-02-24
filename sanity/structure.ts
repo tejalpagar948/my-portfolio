@@ -26,6 +26,11 @@ export const structure: StructureResolver = (S) =>
         .icon(EditIcon)
         .child(S.documentTypeList("review").title("Reviews")),
       S.listItem()
+        .title("Review Invite")
+        .schemaType("reviewInvite")
+        .icon(EnvelopeIcon)
+        .child(S.documentTypeList("reviewInvite").title("Review Invite")),
+      S.listItem()
         .title("Professional Info")
         .icon(DocumentsIcon)
         .child(

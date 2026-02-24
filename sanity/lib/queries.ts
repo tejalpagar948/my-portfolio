@@ -98,12 +98,13 @@ export async function getHomePage(): Promise<Page> {
 
       _type == "reviewsSection" => {
         sectionTitle,
-        reviews[]->{
+        "reviews": *[_type == "review"] | order(_createdAt desc){
+          _id,
           name,
           message,
-          linkedin,
+          linkedin
         }
-     },
+      },
 
       _type == "projectSection" => {
         title,
