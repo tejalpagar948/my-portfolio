@@ -1,11 +1,10 @@
 'use client';
 
 import { Sling as Hamburger } from 'hamburger-react';
-import { useState, useEffect, FC } from 'react';
+import { useState, FC } from 'react';
 
 const HamburgerMenu: FC = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   const navItems = [
     { label: 'Home', href: '/', title: 'Home' },
@@ -17,14 +16,13 @@ const HamburgerMenu: FC = () => {
 
   return (
     <div className="relative xl:hidden">
-      {/* Hamburger */}
+      {/* Hamburger Icon */}
       <Hamburger toggled={isOpen} toggle={setOpen} size={20} duration={0.8} />
 
-      {/* Fullscreen Sliding Menu */}
+      {/* Fullscreen Sliding Menu below header */}
       <div
         className={`
-          fixed right-0 top-[88px]
-          w-full h-[calc(100vh-88px)]
+          fixed top-[88px] left-0 right-0 bottom-0
           bg-custom-blue backdrop-blur-xl
           z-40
           flex justify-center items-center
@@ -32,7 +30,8 @@ const HamburgerMenu: FC = () => {
           transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}>
-        <nav className="flex flex-col gap-6 text-center overflow-hidden">
+        {/* Centered Nav Links */}
+        <nav className="flex flex-col gap-6 text-center">
           {navItems.map((item, index) => (
             <a
               key={item.label}
