@@ -11,20 +11,14 @@ export const useSliderSettings = ({
   slidesToShow = 3,
   reviewsLength = 0,
   autoplay = true,
-}) => {
-  const getSlidesToScroll = (visibleSlides: number) => {
-    return reviewsLength > visibleSlides && reviewsLength % visibleSlides === 0
-      ? visibleSlides
-      : 1;
-  };
-
+}: UseSliderSettingsProps) => {
   const settings = {
     dots: true,
     infinite: true,
     autoplay,
     speed: 1000,
     slidesToShow,
-    slidesToScroll: getSlidesToScroll(slidesToShow),
+    slidesToScroll: 1, // fixed scroll
 
     nextArrow: <SliderArrow direction="next" slidesToShow={slidesToShow} />,
     prevArrow: <SliderArrow direction="prev" />,
@@ -35,14 +29,14 @@ export const useSliderSettings = ({
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: getSlidesToScroll(2), // ⭐ IMPORTANT
+          slidesToScroll: 1, // always 1 on smaller screens
         },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1, // ⭐ ALWAYS 1 ON MOBILE
+          slidesToScroll: 1, // always 1 on mobile
         },
       },
     ],

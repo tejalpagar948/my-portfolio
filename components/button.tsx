@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   const commonClasses =
-    'capitalize bg-custom-yellow text-custom-black py-3 px-12 rounded-4xl';
+    'bg-custom-yellow text-custom-black py-3 px-12 rounded-4xl';
 
   // ✅ ACTION BUTTON (download, submit, etc.)
   if (onClick) {
