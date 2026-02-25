@@ -77,7 +77,7 @@ const AboutSection: React.FC<AboutUsProps> = ({ value }) => {
                   keyValueItem: ({ value }) => (
                     <ul className="info-list flex flex-col gap-6 text-custom-light-gray">
                       <li className="info-list-item flex">
-                        <span className="info-span-left capitalize w-[16%]">
+                        <span className="info-span-left capitalize w-[23%] md:w-[16%]">
                           {value.key}
                         </span>
                         <span className="info-span-right flex gap-2.5">

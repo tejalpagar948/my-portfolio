@@ -37,7 +37,8 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* replace 100px with your navbar height */
+  scroll-behavior: smooth; /* optional: makes scroll smooth */
 }
 
 .phone-number::before {
