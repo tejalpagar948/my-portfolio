@@ -38,7 +38,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ value }) => {
                   </span>
                 ),
                 graySpan: ({ children }) => (
-                  <span className="capitalize text-custom-midium-gray text-4xl">
+                  <span className="capitalize text-custom-midium-gray text-3xl md:text-4xl">
                     {children}
                   </span>
                 ),
