@@ -122,7 +122,13 @@ const ReviewCard = ({ item }: any) => (
     <div className="person-info w-2/6 m-auto mt-10 flex flex-col items-center gap-1">
       <Link href={item?.linkedin} target="_blank" rel="noopener noreferrer">
         <figure className="rounded-full mb-3.5">
-          <Image src={PersonImage} alt="Person" className="rounded-full" />
+          <Image
+            src={item?.image?.asset?.url || PersonImage}
+            alt={item?.name || 'Person'}
+            className="rounded-full"
+            width={80}
+            height={80}
+          />
         </figure>
       </Link>
       <h6 className="person-name">{item?.name}</h6>

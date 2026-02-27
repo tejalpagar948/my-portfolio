@@ -34,8 +34,8 @@ export default async function Home() {
           case 'resumeSection':
             return <ResumeSection key={section._key} value={section} />;
 
-          // case 'reviewsSection':
-          //   return <ReviewSection key={section._key} value={section} />;
+          case 'reviewsSection':
+            return <ReviewSection key={section._key} value={section} />;
 
           case 'projectSection':
             return <ProjectSection key={section._key} value={section} />;

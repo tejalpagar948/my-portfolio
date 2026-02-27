@@ -13,6 +13,20 @@
  */
 
 // Source: schema.json
+export type ReviewInvite = {
+  _id: string;
+  _type: "reviewInvite";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  email?: string;
+  linkedin?: string;
+  token?: string;
+  inviteLink?: string;
+  used?: boolean;
+};
+
 export type SiteConfig = {
   _id: string;
   _type: "siteConfig";
@@ -214,13 +228,6 @@ export type ProjectSection = {
 export type ReviewsSection = {
   _type: "reviewsSection";
   sectionTitle?: string;
-  reviews?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "review";
-  }>;
 };
 
 export type ResumeSection = {
@@ -405,6 +412,18 @@ export type Review = {
   _rev: string;
   name?: string;
   email?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   message?: string;
   linkedin?: string;
   approved?: boolean;
@@ -635,5 +654,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SiteConfig | SanityImageCrop | SanityImageHotspot | Footer | Header | LinkObject | DateRange | KeyValueItem | CtaWithIcon | Cta | ResumeItems | ContactSection | ProjectSection | ReviewsSection | ResumeSection | SkillProficiencySection | SkillSection | AboutSection | HeroSection | ContactInfo | Review | Education | Experience | Project | Skill | Page | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ReviewInvite | SiteConfig | SanityImageCrop | SanityImageHotspot | Footer | Header | LinkObject | DateRange | KeyValueItem | CtaWithIcon | Cta | ResumeItems | ContactSection | ProjectSection | ReviewsSection | ResumeSection | SkillProficiencySection | SkillSection | AboutSection | HeroSection | ContactInfo | Review | Education | Experience | Project | Skill | Page | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

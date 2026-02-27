@@ -4,6 +4,7 @@ import { experience } from "./sanity/schemaTypes/documents/experience";
 import { page } from "./sanity/schemaTypes/documents/page";
 import { project } from "./sanity/schemaTypes/documents/project";
 import { review } from "./sanity/schemaTypes/documents/review";
+import { reviewInvite } from "./sanity/schemaTypes/documents/reviewInvite";
 import { skill } from "./sanity/schemaTypes/documents/skill";
 import { cta } from "./sanity/schemaTypes/objects/cta";
 import { ctaWithIcon } from "./sanity/schemaTypes/objects/ctaWithIcon";
@@ -27,6 +28,7 @@ export const schemaTypes = [
   page,
   project,
   review,
+  reviewInvite,
   skill,
   cta,
   ctaWithIcon,

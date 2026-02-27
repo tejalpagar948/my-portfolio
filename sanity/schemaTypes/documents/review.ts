@@ -20,6 +20,16 @@ export const review = defineType({
       validation: (Rule) => Rule.required().email(),
     }),
 
+    // ✅ NEW IMAGE FIELD ADDED
+    defineField({
+      name: "image",
+      title: "Profile Image",
+      type: "image",
+      options: {
+        hotspot: true, // allows image cropping
+      },
+    }),
+
     defineField({
       name: "message",
       title: "Review Message",
@@ -56,12 +66,13 @@ export const review = defineType({
     select: {
       title: "name",
       subtitle: "message",
-      rating: "rating",
+      media: "image", // ✅ show image in preview
     },
-    prepare({ title, subtitle, rating }) {
+    prepare({ title, subtitle, media }) {
       return {
         title,
         subtitle: subtitle ? `${subtitle.slice(0, 50)}...` : "",
+        media,
       };
     },
   },

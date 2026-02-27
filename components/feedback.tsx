@@ -1,12 +1,16 @@
 'use client';
+
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { useSession } from 'next-auth/react';
 
 interface FeedbackFormProps {
   onClose?: () => void;
 }
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
+  const { data: session } = useSession();
+
   const [formData, setFormData] = useState({
     name: '',
     mail: '',
@@ -21,7 +25,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   >('idle');
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -29,6 +33,12 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!session) {
+      alert('Please log in first to submit feedback.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -43,10 +53,9 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           approved: false,
         },
       ]);
-
       if (error) throw error;
 
-      // 2️⃣ Insert into Sanity via server API
+      // 2️⃣ Insert into Sanity via API
       const sanityResponse = await fetch('/api/submitReview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,6 +64,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           email: formData.mail,
           message: formData.message,
           linkedin: formData.linkedin,
+          image: session.user?.image || null, // ✅ Include user image from session
         }),
       });
 
@@ -71,9 +81,10 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
         approved: false,
       });
 
+      // Auto close after 2 seconds
       setTimeout(() => onClose?.(), 2000);
-    } catch (error) {
-      console.error('Error submitting feedback:', error);
+    } catch (err) {
+      console.error('Error submitting feedback:', err);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -81,7 +92,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-100 relative">
+    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-50 relative">
       {onClose && (
         <button
           onClick={onClose}
