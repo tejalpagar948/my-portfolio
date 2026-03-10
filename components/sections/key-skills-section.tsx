@@ -4,6 +4,7 @@ import KeySkillsCard from './key-skills-card';
 import type { SkillSection as SkillSectionType } from '@/sanity.types';
 import AOS from 'aos';
 import { useEffect } from 'react';
+import KeySkillsCardMobile from './key-skills-card-mobile';
 
 type SkillItem = {
   _id: string;
@@ -28,11 +29,15 @@ const KeySkillsSection: React.FC<KeySkillsSectionProps> = ({ value }) => {
   }, [value]);
   return (
     <section className="key-skills">
-      <div className="wrapper">
-        <h3 className="all-caps" data-aos="fade-up" data-aos-delay="100">
+      <div className="wrapper !pb-0 md:!pb-10">
+        <h3
+          className="all-caps !mb-10 md:!mb-16"
+          data-aos="fade-up"
+          data-aos-delay="100">
           {value?.sectionTitle}
         </h3>
         <KeySkillsCard skills={value?.skills || []} />
+        <KeySkillsCardMobile skills={value?.skills || []} />
       </div>
     </section>
   );

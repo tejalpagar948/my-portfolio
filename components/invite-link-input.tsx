@@ -1,22 +1,36 @@
-import React, { useMemo } from 'react';
-import { useFormValue } from 'sanity';
+import React, { useMemo, useEffect, useState } from 'react';
 import type { StringInputProps } from 'sanity';
+import { PatchEvent, set } from 'sanity';
 
-export function InviteLinkInput(_props: StringInputProps) {
-  const token = useFormValue(['token']) as string | undefined;
+export function InviteLinkInput({ onChange }: StringInputProps) {
+  const [token, setToken] = useState<string>('');
 
-  // ✅ get current studio URL
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
 
+  // Generate token on mount if not already set
+  useEffect(() => {
+    if (!token) {
+      const newToken = Math.random().toString(36).substring(2, 10);
+      setToken(newToken);
+
+      // Save token in Studio
+      if (onChange) {
+        onChange(
+          PatchEvent.from(set(`${baseUrl}/review-form?token=${newToken}`))
+        );
+      }
+    }
+  }, [token, baseUrl, onChange]);
+
   const inviteLink = useMemo(() => {
-    if (!token || !baseUrl) return '';
-    return `${baseUrl}/review-form?token=${token}`;
+    return token ? `${baseUrl}/review-form?token=${token}` : 'Generating...';
   }, [token, baseUrl]);
 
   return (
     <input
-      value={inviteLink}
+      type="text"
       readOnly
+      value={inviteLink}
       onFocus={(e) => e.target.select()}
       style={{
         width: '100%',

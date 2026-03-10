@@ -4,7 +4,6 @@ export const review = defineType({
   name: "review",
   title: "Reviews",
   type: "document",
-
   fields: [
     defineField({
       name: "name",
@@ -12,24 +11,24 @@ export const review = defineType({
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
-      name: "email",
+      name: "email",          // ✅ Add this field
       title: "Email",
       type: "string",
-      validation: (Rule) => Rule.required().email(),
+      readOnly: true,         // optional: prevent manual editing
     }),
-
-    // ✅ NEW IMAGE FIELD ADDED
+    defineField({
+      name: "designation",
+      title: "Designation",
+      type: "string",
+      description: "Job title or position of the reviewer",
+    }),
     defineField({
       name: "image",
       title: "Profile Image",
       type: "image",
-      options: {
-        hotspot: true, // allows image cropping
-      },
+      options: { hotspot: true },
     }),
-
     defineField({
       name: "message",
       title: "Review Message",
@@ -37,22 +36,12 @@ export const review = defineType({
       rows: 4,
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "linkedin",
       title: "LinkedIn Profile",
       type: "url",
       description: "Optional LinkedIn profile link",
     }),
-
-    defineField({
-      name: "approved",
-      title: "Approved",
-      type: "boolean",
-      initialValue: false,
-      description: "Only approved reviews will be shown on the website",
-    }),
-
     defineField({
       name: "createdAt",
       title: "Submitted At",
@@ -61,12 +50,11 @@ export const review = defineType({
       readOnly: true,
     }),
   ],
-
   preview: {
     select: {
       title: "name",
       subtitle: "message",
-      media: "image", // ✅ show image in preview
+      media: "image",
     },
     prepare({ title, subtitle, media }) {
       return {
