@@ -19,7 +19,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // ✅ Fetch here (SERVER component)
   const header = await getHeader();
   const footer = await getFooter();
   if (!footer?.content) return null;
@@ -29,6 +28,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* 🚀 Sanity CDN optimization */}
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+      </head>
+
       <body className="text-custom-white">
         <Providers>
           <AOSProvider />

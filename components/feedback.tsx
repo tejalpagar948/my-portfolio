@@ -1,18 +1,20 @@
 'use client';
+
 import React, { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { useSession } from 'next-auth/react';
 
 interface FeedbackFormProps {
   onClose?: () => void;
 }
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
+  const { data: session } = useSession();
+
   const [formData, setFormData] = useState({
     name: '',
-    mail: '',
-    message: '',
     linkedin: '',
-    approved: false,
+    designation: '',
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,32 +31,26 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!session) {
+      alert('Please log in first to submit feedback.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // 1️⃣ Insert into Supabase
-      const { error } = await supabase.from('feedback_data').insert([
-        {
-          name: formData.name,
-          mail: formData.mail,
-          msg: formData.message,
-          designation: '',
-          linkedin: formData.linkedin,
-          approved: false,
-        },
-      ]);
-
-      if (error) throw error;
-
-      // 2️⃣ Insert into Sanity via server API
+      // Insert into Sanity via API
       const sanityResponse = await fetch('/api/submitReview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.mail,
+          email: session.user?.email || '', // now saved in Sanity
           message: formData.message,
-          linkedin: formData.linkedin,
+          linkedin: formData.linkedin || '',
+          designation: formData.designation || '',
+          image: session.user?.image || '',
         }),
       });
 
@@ -62,18 +58,18 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
 
       setSubmitStatus('success');
 
-      // 3️⃣ Reset form
+      // Reset form
       setFormData({
         name: '',
-        mail: '',
-        message: '',
         linkedin: '',
-        approved: false,
+        designation: '',
+        message: '',
       });
 
+      // Auto close after 2 seconds
       setTimeout(() => onClose?.(), 2000);
-    } catch (error) {
-      console.error('Error submitting feedback:', error);
+    } catch (err) {
+      console.error('Error submitting feedback:', err);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -81,7 +77,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-100 relative">
+    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-50 relative">
       {onClose && (
         <button
           onClick={onClose}
@@ -105,6 +101,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* 1️⃣ Name */}
         <input
           type="text"
           name="name"
@@ -115,16 +112,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           required
         />
 
-        <input
-          type="email"
-          name="mail"
-          placeholder="Enter Email"
-          value={formData.mail}
-          onChange={handleChange}
-          className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5 text-white"
-          required
-        />
-
+        {/* 2️⃣ LinkedIn */}
         <input
           type="url"
           name="linkedin"
@@ -134,6 +122,17 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5 text-white"
         />
 
+        {/* 3️⃣ Designation */}
+        <input
+          type="text"
+          name="designation"
+          placeholder="Enter Designation"
+          value={formData.designation}
+          onChange={handleChange}
+          className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5 text-white"
+        />
+
+        {/* 4️⃣ Review */}
         <textarea
           name="message"
           placeholder="Enter your review"

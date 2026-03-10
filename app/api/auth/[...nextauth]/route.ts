@@ -14,7 +14,9 @@ export const authOptions = {
   callbacks: {
     async signIn({ user }: { user: any }) {
       // store google info in supabase
-      await supabase.from("reviewers").upsert({
+      console.log("🔥 SIGNIN CALLBACK RUNNING 🔥");
+      console.log("User:", user);
+      await supabase.from("reviews").upsert({
         email: user.email,
         name: user.name,
         photo: user.image,
