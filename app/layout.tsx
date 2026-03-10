@@ -12,6 +12,10 @@ export const metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  other: [
+    { rel: 'preconnect', href: 'https://cdn.sanity.io', crossOrigin: '' },
+    { rel: 'dns-prefetch', href: 'https://cdn.sanity.io' },
+  ],
 };
 
 export default async function RootLayout({
@@ -28,12 +32,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        {/* 🚀 Sanity CDN optimization */}
-        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-      </head>
-
       <body className="text-custom-white">
         <Providers>
           <AOSProvider />

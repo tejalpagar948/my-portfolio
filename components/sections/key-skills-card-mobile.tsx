@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { urlFor } from '@/sanity/lib/image';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 type SkillItem = {
   _id: string;
@@ -21,14 +19,6 @@ interface Props {
 const KeySkillsCardMobile: React.FC<Props> = ({ skills }) => {
   const [index, setIndex] = useState(0);
   const touchStartX = useRef(0);
-
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: 'ease-out-cubic',
-    });
-  }, []);
 
   const nextCard = () => {
     if (index < skills.length - 1) {
