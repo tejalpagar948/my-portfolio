@@ -12,10 +12,8 @@ export const reviewInvite = defineType({
       name: "inviteLink",
       title: "Invite Link",
       type: "string",
-      readOnly: true,
       components: { input: InviteLinkInput },
-      // ✅ hidden internal token generation (handled in input)
-      initialValue: () => "", // leave empty, the component will generate dynamically
+      initialValue: "",
     }),
     defineField({
       name: "used",
