@@ -13,10 +13,6 @@ export interface AboutUsProps {
 }
 
 const AboutSection: React.FC<AboutUsProps> = ({ value }) => {
-  useEffect(() => {
-    AOS.refresh();
-  }, [value]);
-
   if (!value) return null;
 
   const downloadFile = async (url?: string, filename?: string) => {

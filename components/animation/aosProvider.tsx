@@ -9,21 +9,28 @@ export default function AOSProvider() {
   const pathname = usePathname();
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-      offset: 120,
-      easing: 'ease-out-cubic',
-      mirror: true,
-    });
+    // Delay init slightly to ensure all DOM elements exist
+    const timeout = setTimeout(() => {
+      AOS.init({
+        duration: 800,
+        offset: 120,
+        easing: 'ease-out-cubic',
+        once: false, // allow repeated animations
+        mirror: true, // animate when scrolling back
+      });
+      AOS.refresh(); // detect all elements in the DOM
+    }, 50);
 
-    // Ensure AOS picks up elements rendered on first paint.
-    AOS.refreshHard();
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
-    // Re-scan DOM after route changes / client-side content updates.
-    AOS.refreshHard();
+    // Refresh AOS after route changes with small delay
+    const timeout = setTimeout(() => {
+      AOS.refresh();
+    }, 50);
+
+    return () => clearTimeout(timeout);
   }, [pathname]);
 
   return null;
