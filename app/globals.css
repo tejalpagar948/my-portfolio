@@ -74,7 +74,7 @@ h2 {
 }
 
 h3 {
-  @apply uppercase relative text-center text-custom-yellow font-bold mb-16 text-2xl mb-16;
+  @apply uppercase relative text-center text-custom-yellow font-bold mb-16 text-2xl;
 }
 
 h3::after {
@@ -86,7 +86,7 @@ h3::before {
 }
 
 h4 {
-  @apply capitalize text-4xl;
+  @apply capitalize text-3xl md:text-4xl;
 }
 
 h5 {
@@ -196,4 +196,8 @@ section {
 
 .list-circle {
   list-style-type: circle;
+}
+
+.project-card {
+  @apply bg-[#0f1b2db0] rounded-2xl;
 }

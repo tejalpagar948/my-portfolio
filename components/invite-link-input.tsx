@@ -5,15 +5,15 @@ import { PatchEvent, set } from 'sanity';
 export function InviteLinkInput({ onChange }: StringInputProps) {
   const [token, setToken] = useState<string>('');
 
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  // ✅ Use your private ngrok domain
+  const baseUrl = 'https://my-portfolio-ten-navy-92.vercel.app';
 
-  // Generate token on mount if not already set
+  // Generate token once
   useEffect(() => {
     if (!token) {
       const newToken = Math.random().toString(36).substring(2, 10);
       setToken(newToken);
 
-      // Save token in Studio
       if (onChange) {
         onChange(
           PatchEvent.from(set(`${baseUrl}/review-form?token=${newToken}`))
