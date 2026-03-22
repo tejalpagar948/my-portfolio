@@ -98,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ item }) => (
   <Link
     href={item?.cta?.externalUrl ?? '#'}
     className="group flex flex-col h-full
-bg-[#0f1b2d]
+bg-[#0f1b2db0]
 rounded-xl
 shadow-[0_8px_25px_rgba(0,0,0,0.35)]
 transition-all duration-300">
