@@ -1,4 +1,3 @@
-// useSliderSettings.ts
 import SliderArrow from './sliderArrow';
 
 interface UseSliderSettingsProps {
@@ -10,37 +9,34 @@ interface UseSliderSettingsProps {
 export const useSliderSettings = ({
   slidesToShow = 3,
   reviewsLength = 0,
-  autoplay = true,
+  autoplay = false,
 }: UseSliderSettingsProps) => {
-  const settings = {
+  return {
     dots: true,
-    infinite: true,
+    infinite: false, // ⭐ MUST for disable logic
     autoplay,
-    speed: 1000,
+    speed: 500,
     slidesToShow,
-    slidesToScroll: 1, // fixed scroll
-
+    slidesToScroll: 1,
+    arrows: reviewsLength > 1,
     nextArrow: <SliderArrow direction="next" slidesToShow={slidesToShow} />,
-    prevArrow: <SliderArrow direction="prev" />,
-    arrows: reviewsLength > slidesToShow,
+    prevArrow: <SliderArrow direction="prev" slidesToShow={slidesToShow} />,
 
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1, // always 1 on smaller screens
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1, // always 1 on mobile
+          slidesToScroll: 1,
         },
       },
     ],
   };
-
-  return settings;
 };

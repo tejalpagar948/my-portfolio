@@ -77,11 +77,11 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-50 relative">
+    <div className="wrapper bg-custom-blue py-10 rounded-2xl shadow-lg w-full lg:!w-4/12 z-50 relative h-screen md:h-auto flex justify-center flex-col">
       {onClose && (
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-300 hover:text-white text-xl">
+          className="absolute top-50 right-4 text-gray-300 hover:text-white text-xl">
           ✕
         </button>
       )}
@@ -108,7 +108,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           placeholder="Enter Name"
           value={formData.name}
           onChange={handleChange}
-          className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-4.5 px-5 text-white"
+          className="bg-[#101624] w-full rounded-lg border border-custom-grayish-blue py-3.5 px-5 text-white"
           required
         />
 
