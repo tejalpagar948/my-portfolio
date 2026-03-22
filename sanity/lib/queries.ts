@@ -102,6 +102,7 @@ export async function getHomePage(): Promise<Page> {
           _id,
           name,
           message,
+          designation,
           linkedin,
           image{
         asset->{

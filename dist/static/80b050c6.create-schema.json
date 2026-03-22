@@ -424,6 +424,11 @@
         "title": "LinkedIn Profile"
       },
       {
+        "initialValue": true,
+        "name": "approved",
+        "type": "boolean"
+      },
+      {
         "readOnly": true,
         "name": "createdAt",
         "type": "datetime",
@@ -1799,7 +1804,6 @@
         "type": "string"
       },
       {
-        "readOnly": true,
         "name": "inviteLink",
         "type": "string"
       },

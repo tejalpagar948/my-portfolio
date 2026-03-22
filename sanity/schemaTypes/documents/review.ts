@@ -43,6 +43,12 @@ export const review = defineType({
       description: "Optional LinkedIn profile link",
     }),
     defineField({
+      name: "approved",
+      title: "Approved",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "createdAt",
       title: "Submitted At",
       type: "datetime",

@@ -7,7 +7,7 @@ import Marquee from 'react-fast-marquee';
 import { urlFor } from '@/sanity/lib/image';
 import type { ReviewsSection, Review } from '@/sanity.types';
 
-type ReviewWithRole = Review & { role?: string };
+type ReviewWithRole = Review & { designation?: string };
 export type ReviewsSectionWithReviews = ReviewsSection & {
   reviews: ReviewWithRole[];
 };
@@ -30,6 +30,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ value }) => {
   // Duplicate reviews array for seamless scrolling
   const displayReviews = [...value.reviews, ...value.reviews];
 
+  console.log('Hi', value);
   return (
     <section className="reviews relative pb-10 md:pb-15" id="reviews">
       <div className="wrapper">
@@ -91,6 +92,7 @@ const ReviewCard = ({ item }: { item: ReviewWithRole }) => (
             width={70}
             height={70}
             className="!h-[70px] rounded-full mb-3 border-2 border-[#2a3446]"
+            unoptimized
           />
         ) : (
           <div className="w-[70px] h-[70px] bg-amber-400 rounded-full mb-3 border-2 border-[#2a3446] flex items-center justify-center">
@@ -106,7 +108,9 @@ const ReviewCard = ({ item }: { item: ReviewWithRole }) => (
       </Link>
 
       <h6 className="text-white font-semibold text-base">{item.name}</h6>
-      <span className="text-gray-400 text-sm">{item.role || 'Client'}</span>
+      <span className="text-gray-400 text-sm">
+        {item.designation || 'Colleague'}
+      </span>
     </div>
   </div>
 );

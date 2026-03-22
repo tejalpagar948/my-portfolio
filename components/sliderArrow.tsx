@@ -17,24 +17,24 @@ const SliderArrow: React.FC<SliderArrowProps> = ({
   slidesToShow = 1,
 }) => {
   const isDisabled =
-    direction === 'next'
-      ? currentSlide >= slideCount - slidesToShow
-      : currentSlide === 0;
+    direction === 'prev'
+      ? currentSlide === 0
+      : currentSlide >= slideCount - slidesToShow;
 
-  // Conditional class with custom names
   const arrowClass = `
-    absolute top-1/2 w-14 h-14 flex items-center justify-center rounded-full -translate-y-1/2 transition-colors
+    absolute top-1/2 w-14 h-14 flex items-center justify-center rounded-full 
+    -translate-y-1/2 transition-colors
+    ${direction === 'next' ? 'right-[-40px]' : 'left-[-40px]'}
     ${
-      direction === 'next'
-        ? 'right-[-30px] next-slick'
-        : 'left-[-30px] prev-slick'
+      isDisabled
+        ? 'text-gray-600 cursor-not-allowed opacity-40'
+        : 'text-gray-300 hover:text-white'
     }
-    ${isDisabled ? 'text-custom-dark-gray' : 'text-gray-300'}
   `;
 
   return (
     <button
-      onClick={onClick}
+      onClick={isDisabled ? undefined : onClick}
       disabled={isDisabled}
       aria-label={direction === 'next' ? 'Next Slide' : 'Previous Slide'}
       className={arrowClass}>

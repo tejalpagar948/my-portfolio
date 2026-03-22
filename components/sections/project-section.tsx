@@ -1,27 +1,34 @@
 'use client';
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Slider from 'react-slick';
+import AOS from 'aos';
+
 import { useSliderSettings } from '../useSliderSettings';
 import { ProjectSection as ProjectSectionType, Project } from '@/sanity.types';
 import { urlFor } from '@/sanity/lib/image';
-import AOS from 'aos';
-import { useEffect } from 'react';
+
+//////////////////////////////////////////////////////
+// TYPES
+//////////////////////////////////////////////////////
 
 interface ProjectSectionProps {
   value: ProjectSectionType;
 }
 
-// ✅ Proper TypeScript fix for react-slick Slider
+const itemTabs: string[] = ['html', 'css', 'javascript', 'react'];
+
+// react-slick typing fix
 const SliderComponent = Slider as unknown as React.ComponentType<any>;
+
+//////////////////////////////////////////////////////
+// MAIN COMPONENT
+//////////////////////////////////////////////////////
 
 const ProjectSection: React.FC<ProjectSectionProps> = ({ value }) => {
   if (!value) return null;
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [value]);
 
   const projects = value.projects || [];
   const projectArrayLength = projects.length;
@@ -33,17 +40,24 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ value }) => {
   });
 
   return (
-    <section className="projects" id="project">
-      <div className="wrapper">
-        <h3 className="all-caps mb-8" data-aos="fade-up" data-aos-delay="100">
+    <section className="projects py-16" id="project">
+      <div className="wrapper max-w-6xl mx-auto px-5">
+        <h3
+          className="all-caps mb-10 text-2xl font-bold"
+          data-aos="fade-up"
+          data-aos-delay="100">
           {value.sectionTitle || 'Projects'}
         </h3>
+
         {projectArrayLength > 3 ? (
+          //////////////////////////////////////////////////////
+          // ⭐ SLIDER VIEW
+          //////////////////////////////////////////////////////
           <SliderComponent {...settings}>
             {projects.map((item, index) => (
               <div
                 key={index}
-                className="px-5"
+                className="px-3 h-full flex"
                 data-aos="fade-up"
                 data-aos-delay="100">
                 <ProjectCard item={item as unknown as Project} />
@@ -51,12 +65,15 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ value }) => {
             ))}
           </SliderComponent>
         ) : (
+          //////////////////////////////////////////////////////
+          // ⭐ GRID VIEW (Equal height)
+          //////////////////////////////////////////////////////
           <ul
-            className="project-list flex flex-wrap md:flex-nowrap gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
             data-aos="fade-up"
             data-aos-delay="100">
             {projects.map((item, index) => (
-              <li key={index} className="w-full md:w-1/3">
+              <li key={index}>
                 <ProjectCard item={item as unknown as Project} />
               </li>
             ))}
@@ -69,31 +86,58 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ value }) => {
 
 export default ProjectSection;
 
-// ⭐ ProjectCard Component
-const ProjectCard = ({ item }: { item: Project }) => (
+//////////////////////////////////////////////////////
+// ⭐ PROJECT CARD COMPONENT
+//////////////////////////////////////////////////////
+
+interface ProjectCardProps {
+  item: Project;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ item }) => (
   <Link
-    href={item?.cta?.externalUrl || '#'}
-    className="group project-list-item flex flex-col gap-3.5">
-    <figure className="relative overflow-hidden w-full h-[185px]">
+    href={item?.cta?.externalUrl ?? '#'}
+    className="group flex flex-col h-full
+bg-[#0f1b2d]
+rounded-xl
+shadow-[0_8px_25px_rgba(0,0,0,0.35)]
+transition-all duration-300">
+    {/* IMAGE */}
+    <figure className="relative w-full aspect-[16/9] overflow-hidden rounded-t-xl">
       {item.projectThumbnail && (
         <>
           <Image
             src={urlFor(item.projectThumbnail).url()}
-            alt={item.title || 'Project Thumbnail'}
-            width={200}
-            height={200}
-            priority
+            alt={item.title ?? 'Project Thumbnail'}
+            fill
             unoptimized
-            className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         </>
       )}
     </figure>
 
-    <span className="pt-2 text-2xl">{item.title}</span>
-    {item.description && <p className="text-base">{item.description}</p>}
+    {/* CONTENT */}
+    <div className="flex flex-col flex-1 p-5 gap-3">
+      <span className="text-lg font-bold">{item.title}</span>
+
+      {item.description && (
+        <p className="text-[15px] text-gray-300 leading-relaxed">
+          {item.description}
+        </p>
+      )}
+
+      {/* TAGS */}
+      {/* <ul className="flex flex-wrap gap-2 mt-auto">
+        {itemTabs.map((tech) => (
+          <li
+            key={tech}
+            className="bg-[#202a34] px-3 py-1 rounded-full text-sm border border-[#2a3446]">
+            {tech}
+          </li>
+        ))}
+      </ul> */}
+    </div>
   </Link>
 );
