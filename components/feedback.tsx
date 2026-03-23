@@ -135,7 +135,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
         {/* 4️⃣ Review */}
         <textarea
           name="message"
-          placeholder="Write a review"
+          placeholder="Write a Review"
           value={formData.message}
           onChange={handleChange}
           rows={4}
