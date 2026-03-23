@@ -86,7 +86,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
         </button>
       )}
 
-      <h3 className="text-xl font-bold text-white !mb-12">Feedback Form</h3>
+      <h3 className="text-xl font-bold text-white !mb-12">Leave Testimonial</h3>
 
       {submitStatus === 'success' && (
         <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
@@ -135,7 +135,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
         {/* 4️⃣ Review */}
         <textarea
           name="message"
-          placeholder="Enter your review"
+          placeholder="Write a review"
           value={formData.message}
           onChange={handleChange}
           rows={4}
